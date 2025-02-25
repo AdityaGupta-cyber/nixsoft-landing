@@ -18,7 +18,7 @@ const LogoMarquee = () => {
            animation: `${reverse ? 'scroll-reverse' : 'scroll'} 60s linear infinite`,
          }}>
       {logos.map((logo) => (
-        <div key={logo.id} className={`grid place-items-center ${'w-48 h-28'} bg-blue-100 dark:bg-blue-900 rounded-lg p-4`}>
+        <div key={logo.id} className={`grid place-items-center ${'w-48 h-28'}  dark:bg-blue-900 rounded-lg p-4`}>
           <svg viewBox="0 0 24 24" className="w-full h-full fill-current">
             <path d={logo.path} />
           </svg>
@@ -28,8 +28,8 @@ const LogoMarquee = () => {
   );
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto "> 
-        <h2 className='text-2xl font-bold text-center text-blue-500'> TRUSTED BY</h2>
+    <div className="relative w-full max-w-[80vw] mx-auto my-12 md:my-24 space-y-12 gap-12"> 
+        <h2 className='text-3xl tracking-wider font-bold text-center '> Trusted By</h2>
       {/* Marquee Container */}
       <div className={`flex flex-col gap-2 overflow-hidden my-8`}>
         <div className={`relative flex gap-2 overflow-hidden`}>

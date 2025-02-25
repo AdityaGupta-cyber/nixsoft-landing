@@ -3,32 +3,40 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-
+import CloudQueueIcon from '@mui/icons-material/CloudQueue';
+import SecurityIcon from '@mui/icons-material/Security';
+import CodeIcon from '@mui/icons-material/Code';
+import StorageIcon from '@mui/icons-material/Storage';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
+import BusinessIcon from '@mui/icons-material/Business';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 export const HoverEffect = ({
   items,
   className,
 }: {
   items: {
-    title: string;
-    description: string;
-    link: string;
-    pic?: string;
+    title?: string;
+    description?: string;
+    link?: string;
+    icon?: React.ReactNode;
+    name?: string;
   }[];
   className?: string;
 }) => {
+  console.log(items);
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <div
       className={cn(
-        "grid grid-cols-1  lg:grid-cols-3 py-4 md:py-2 gap-2",
+        "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-4 md:py-2 gap-6",
         className
       )}
     >
       {items.map((item, idx) => (
         <div
           key={item?.link}
-          className="relative group block p-2 h-full w-full"
+          className={`relative group block p-2 h-full w-full ${idx >2 ? "hidden md:block" : ""}`}
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -49,9 +57,10 @@ export const HoverEffect = ({
               />
             )}
           </AnimatePresence>
-          <Card pic={item.pic}>
-            <CardTitle>{item.title}</CardTitle>
+          <Card icon={item.icon} keys={idx} className="space-y-1">
+            <CardTitle>{item.title || item.name}</CardTitle>
             <CardDescription>{item.description}</CardDescription>
+            {item.link && <CardLink link={item.link}  className="hover:text-underline">Learn More <ArrowForwardIcon /></CardLink>}
           </Card>
         </div>
       ))}
@@ -62,32 +71,27 @@ export const HoverEffect = ({
 export const Card = ({
   className,
   children,
-  pic
+  icon,
+  keys
 }: {
   className?: string;
   children: React.ReactNode;
-  pic?: string;
+  icon?: React.ReactNode;
+  keys?: number;
 }) => {
   return (
     <div
       className={cn(
-        "h-full w-full overflow-hidden  border border-zinc-700 group-hover:border-neutral-400 relative z-20 rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900",
+        "h-full w-full overflow-hidden border border-zinc-700 group-hover:border-neutral-100 relative z-20 rounded-[22px] max-w-sm p-4 sm:p-10 bg-white dark:bg-zinc-900",
         className
       )}
     >
-      {pic && (
-        <div className="relative  w-full mb-2 flex justify-center px-3 ">
-        <Image
-          src={pic as string}
-          alt="jordans"
-          height="400"
-          width="400"
-          className="object-contain"
-        />
+      
+      <div className="relative z-50 flex flex-col items-left">
+        <div className="flex items-center">
+          {icon}
         </div>
-      )}
-      <div className="relative z-50">
-        <div className="p-2 space-y-2">
+        <div className=" space-y-2 flex flex-col items-left">
           {children}
         </div>
       </div>
@@ -103,7 +107,7 @@ export const CardTitle = ({
   children: React.ReactNode;
 }) => {
   return (
-    <h4 className={cn("font-bold tracking-wide flex items-center justify-center text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200", className)}>
+    <h4 className={cn("font-bold tracking-wide flex items-center  text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200", className)}>
       {children}
     </h4>
   );
@@ -119,7 +123,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        " tracking-wide leading-relaxed text-center text-sm text-neutral-600 dark:text-neutral-400",
+        " tracking-wide leading-relaxed  text-sm text-neutral-600 dark:text-neutral-400 flex items-left",
         className
       )}
     >
@@ -128,12 +132,57 @@ export const CardDescription = ({
   );
 };
 
-export const CardImage = ({
+export const CardLink = ({
   className,
   children,
+  link
 }: {
   className?: string;
-  children: string;
+  children: React.ReactNode;
+  link: string;
 }) => {
-  return <Image src={children} alt="card image" className={cn("rounded-xl object-cover",className)} width={400} height={500} />;
+  return (
+    <a href={link} key={link} className={cn("text-blue-500 hover:text-blue-600 flex items-center gap-2", className)}>
+      {children}
+    </a>
+  );
 };
+
+export const services = [
+  {
+    title: "Cloud Solutions",
+    description: "Scalable and secure cloud infrastructure for your business needs.",
+    link: "#",
+    icon: <CloudQueueIcon sx={{ color: "blue" }} />
+  },
+  {
+    title: "Software Development",
+    description: "Custom software solutions tailored to your requirements.",
+    link: "#2",
+    icon: <CodeIcon sx={{ color: "green" }} />
+  },
+  {
+    title: "Data Analytics",
+    description: "Transform your data into actionable insights for better decision-making.",
+    link: "#3",
+    icon: <StorageIcon sx={{ color: "blue",fontSize: "" }} />
+  },
+  {
+    title: "Cybersecurity",
+    description: "Protect your business with advanced security solutions.",
+    link: "#4",
+    icon: <SecurityIcon sx={{ color: "red" }} />
+  },
+  {
+    title: "IT Consulting",
+    description: "Expert guidance for your technology decisions.",
+    link: "#5",
+    icon: <BusinessIcon sx={{ color: "orange" }} />
+  },
+  {
+    title: "24/7 Support",
+    description: "Round-the-clock technical support and maintenance.",
+    link: "#6",
+    icon: <SupportAgentIcon sx={{ color: "teal" }} />
+  }
+];
