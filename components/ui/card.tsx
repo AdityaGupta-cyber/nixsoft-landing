@@ -1,15 +1,15 @@
-"use client"
+"use client";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { useState } from "react";
-import CloudQueueIcon from '@mui/icons-material/CloudQueue';
-import SecurityIcon from '@mui/icons-material/Security';
-import CodeIcon from '@mui/icons-material/Code';
-import StorageIcon from '@mui/icons-material/Storage';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import BusinessIcon from '@mui/icons-material/Business';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import CloudQueueIcon from "@mui/icons-material/CloudQueue";
+import SecurityIcon from "@mui/icons-material/Security";
+import CodeIcon from "@mui/icons-material/Code";
+import StorageIcon from "@mui/icons-material/Storage";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import BusinessIcon from "@mui/icons-material/Business";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+
 export const HoverEffect = ({
   items,
   className,
@@ -23,8 +23,7 @@ export const HoverEffect = ({
   }[];
   className?: string;
 }) => {
-  console.log(items);
-  let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <div
@@ -36,7 +35,9 @@ export const HoverEffect = ({
       {items.map((item, idx) => (
         <div
           key={item?.link}
-          className={`relative group block p-2 h-full w-full ${idx >2 ? "hidden md:block" : ""}`}
+          className={`relative group block p-2 h-full w-full ${
+            idx > 2 ? "hidden md:block" : ""
+          }`}
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
@@ -57,10 +58,14 @@ export const HoverEffect = ({
               />
             )}
           </AnimatePresence>
-          <Card icon={item.icon} keys={idx} className="space-y-1">
+          <Card icon={item.icon} className="space-y-1">
             <CardTitle>{item.title || item.name}</CardTitle>
             <CardDescription>{item.description}</CardDescription>
-            {item.link && <CardLink link={item.link}  className="hover:text-underline">Learn More <ArrowForwardIcon /></CardLink>}
+            {item.link && (
+              <CardLink link={item.link} className="hover:text-underline">
+                Learn More <ArrowForwardIcon />
+              </CardLink>
+            )}
           </Card>
         </div>
       ))}
@@ -72,12 +77,10 @@ export const Card = ({
   className,
   children,
   icon,
-  keys
 }: {
   className?: string;
   children: React.ReactNode;
   icon?: React.ReactNode;
-  keys?: number;
 }) => {
   return (
     <div
@@ -86,14 +89,9 @@ export const Card = ({
         className
       )}
     >
-      
       <div className="relative z-50 flex flex-col items-left">
-        <div className="flex items-center">
-          {icon}
-        </div>
-        <div className=" space-y-2 flex flex-col items-left">
-          {children}
-        </div>
+        <div className="flex items-center">{icon}</div>
+        <div className="space-y-2 flex flex-col items-left">{children}</div>
       </div>
     </div>
   );
@@ -107,7 +105,12 @@ export const CardTitle = ({
   children: React.ReactNode;
 }) => {
   return (
-    <h4 className={cn("font-bold tracking-wide flex items-center  text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200", className)}>
+    <h4
+      className={cn(
+        "font-bold tracking-wide flex items-center text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200",
+        className
+      )}
+    >
       {children}
     </h4>
   );
@@ -123,7 +126,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        " tracking-wide leading-relaxed  text-sm text-neutral-600 dark:text-neutral-400 flex items-left",
+        "tracking-wide leading-relaxed text-sm text-neutral-600 dark:text-neutral-400 flex items-left",
         className
       )}
     >
@@ -135,14 +138,21 @@ export const CardDescription = ({
 export const CardLink = ({
   className,
   children,
-  link
+  link,
 }: {
   className?: string;
   children: React.ReactNode;
   link: string;
 }) => {
   return (
-    <a href={link} key={link} className={cn("text-blue-500 hover:text-blue-600 flex items-center gap-2", className)}>
+    <a
+      href={link}
+      key={link}
+      className={cn(
+        "text-blue-500 hover:text-blue-600 flex items-center gap-2",
+        className
+      )}
+    >
       {children}
     </a>
   );
@@ -151,38 +161,40 @@ export const CardLink = ({
 export const services = [
   {
     title: "Cloud Solutions",
-    description: "Scalable and secure cloud infrastructure for your business needs.",
+    description:
+      "Scalable and secure cloud infrastructure for your business needs.",
     link: "#",
-    icon: <CloudQueueIcon sx={{ color: "blue" }} />
+    icon: <CloudQueueIcon sx={{ color: "blue" }} />,
   },
   {
     title: "Software Development",
     description: "Custom software solutions tailored to your requirements.",
     link: "#2",
-    icon: <CodeIcon sx={{ color: "green" }} />
+    icon: <CodeIcon sx={{ color: "green" }} />,
   },
   {
     title: "Data Analytics",
-    description: "Transform your data into actionable insights for better decision-making.",
+    description:
+      "Transform your data into actionable insights for better decision-making.",
     link: "#3",
-    icon: <StorageIcon sx={{ color: "blue",fontSize: "" }} />
+    icon: <StorageIcon sx={{ color: "blue" }} />,
   },
   {
     title: "Cybersecurity",
     description: "Protect your business with advanced security solutions.",
     link: "#4",
-    icon: <SecurityIcon sx={{ color: "red" }} />
+    icon: <SecurityIcon sx={{ color: "red" }} />,
   },
   {
     title: "IT Consulting",
     description: "Expert guidance for your technology decisions.",
     link: "#5",
-    icon: <BusinessIcon sx={{ color: "orange" }} />
+    icon: <BusinessIcon sx={{ color: "orange" }} />,
   },
   {
     title: "24/7 Support",
     description: "Round-the-clock technical support and maintenance.",
     link: "#6",
-    icon: <SupportAgentIcon sx={{ color: "teal" }} />
-  }
+    icon: <SupportAgentIcon sx={{ color: "teal" }} />,
+  },
 ];

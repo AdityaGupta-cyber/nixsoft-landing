@@ -6,7 +6,8 @@ import LogoMarquee from "@/components/LogoMarquee";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import LatestResources from "@/components/LatestResources";
 import GetInTouch from "@/components/GetInTouch";
-import PreFooter from "@/components/PreFooter";
+
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <WhyChooseUs />
       <LatestResources />
       <GetInTouch />
+      <Footer />
     </div>
   );
 }

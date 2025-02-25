@@ -9,12 +9,15 @@ export default function GetInTouch() {
           {/* Contact Form */}
           <div className="space-y-8">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Get in Touch
+              </h2>
               <p className="text-gray-600">
-                Have a question or want to learn more? Send us a message and we'll get back to you.
+                Have a question or want to learn more? Send us a message and
+                we&apos;ll get back to you.
               </p>
             </div>
-            
+
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <input
@@ -47,7 +50,9 @@ export default function GetInTouch() {
           {/* Contact Information */}
           <div className="space-y-8 flex flex-col items-center justify-center">
             <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Contact Information</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                Contact Information
+              </h3>
               <div className="space-y-4">
                 <p className="flex items-center space-x-3 text-gray-600">
                   <span>📍</span>
@@ -65,7 +70,9 @@ export default function GetInTouch() {
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Business Hours</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                Business Hours
+              </h3>
               <div className="space-y-2 text-gray-600">
                 <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
                 <p>Saturday: 10:00 AM - 4:00 PM</p>
@@ -77,4 +84,4 @@ export default function GetInTouch() {
       </div>
     </div>
   );
-} 
+}
