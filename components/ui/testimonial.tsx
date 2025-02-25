@@ -9,7 +9,7 @@ export function Testimonials({ testimonials }: { testimonials: { name: string, t
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className={cn("grid grid-cols-1 lg:grid-cols-3 py-4 md:py-2 gap-2")}>
+    <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-4 md:py-2 gap-4")}>
       {testimonials.map((testimonial, idx) => (
         <div
           key={testimonial.name}
