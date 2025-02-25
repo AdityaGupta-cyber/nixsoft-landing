@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/lib/utils";
+
 import Link from "next/link";
 
 export default function Fusion() {
@@ -15,24 +15,29 @@ export default function Fusion() {
           {[
             {
               title: "Expert Team",
-              description: "Enterprise open-source consulting services tailored to your organization's goals."
+              description:
+                "Enterprise open-source consulting services tailored to your organization's goals.",
             },
             {
               title: "Innovative Solutions",
-              description: "Leverage cutting-edge technologies to drive efficiency and success."
+              description:
+                "Leverage cutting-edge technologies to drive efficiency and success.",
             },
             {
               title: "Client Focused",
-              description: "Your success is our priority. We work closely with you to achieve your goals."
+              description:
+                "Your success is our priority. We work closely with you to achieve your goals.",
             },
             {
               title: "Scalable Architecture",
-              description: "Future-proof your infrastructure with our scalable and flexible solutions."
+              description:
+                "Future-proof your infrastructure with our scalable and flexible solutions.",
             },
             {
               title: "Continuous Support",
-              description: "Reliable, ongoing support to ensure sustained growth and security."
-            }
+              description:
+                "Reliable, ongoing support to ensure sustained growth and security.",
+            },
           ].map((item, idx) => (
             <div
               key={idx}
