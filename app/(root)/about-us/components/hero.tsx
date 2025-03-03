@@ -113,8 +113,8 @@ const App = () => {
               <p className="text-gray-600 mb-8">
                 Nixsoft is a leading technology solutions provider, dedicated to
                 delivering innovative and scalable solutions that drive business
-                growth. With over 7 years of experience, we've helped numerous
-                businesses achieve their digital transformation goals.
+                growth. With over 7 years of experience, we&apos;ve helped
+                numerous businesses achieve their digital transformation goals.
               </p>
 
               <div className="stats-section grid grid-cols-3 gap-6 mt-10">
