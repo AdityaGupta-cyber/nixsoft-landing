@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "./ui/button";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function GetInTouch() {
   return (
@@ -41,7 +42,7 @@ export default function GetInTouch() {
                 rows={4}
                 className="w-full p-3 border border-gray-300 rounded-md"
               />
-              <Button className="w-full bg-blue-600 text-white py-3 rounded-xl  hover:bg-blue-700">
+              <Button className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700">
                 Send Message
               </Button>
             </form>
@@ -55,15 +56,15 @@ export default function GetInTouch() {
               </h3>
               <div className="space-y-4">
                 <p className="flex items-center space-x-3 text-gray-600">
-                  <span>📍</span>
+                  <MapPin className="w-5 h-5" />
                   <span>123 Business Avenue, Suite 100, CA 94107</span>
                 </p>
                 <p className="flex items-center space-x-3 text-gray-600">
-                  <span>📞</span>
+                  <Phone className="w-5 h-5" />
                   <span>+1 (555) 123-4567</span>
                 </p>
                 <p className="flex items-center space-x-3 text-gray-600">
-                  <span>✉️</span>
+                  <Mail className="w-5 h-5" />
                   <span>contact@nixsoft.com</span>
                 </p>
               </div>
