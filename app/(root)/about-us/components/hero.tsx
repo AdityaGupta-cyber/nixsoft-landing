@@ -61,8 +61,8 @@ const App = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-blue-600 relative overflow-hidden">
-        <div className="absolute inset-0">
+      <section className="bg-blue-600 pt-24  relative overflow-hidden">
+        <div className=" absolute inset-0">
           <motion.div
             className="w-64 h-64 rounded-full bg-blue-500 opacity-50 absolute -top-20 -left-20"
             animate={{ scale: [1, 1.2, 1], rotate: [0, 10, 0] }}
