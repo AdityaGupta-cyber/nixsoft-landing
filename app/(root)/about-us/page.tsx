@@ -1,11 +1,23 @@
-import React from "react";
+import App from "./components/hero";
+import CoreValuesSection from "./components/Core";
+import MissionVision from "./components/mission";
+import LeadershipTeamSection from "./components/Leadership";
+import TechnologiesSection from "./components/Technologies";
+import CTASection from "./components/Cta";
 
-const page = () => {
+const AboutUsPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold text-center mb-4">About Us</h1>
-    </div>
+    <>
+      <div className="min-h-screen bg-gradient-to-br from-navy-900 via-blue-900 to-blue-800">
+        <App />
+        <CoreValuesSection />
+        <MissionVision />
+        <LeadershipTeamSection />
+        <TechnologiesSection />
+        <CTASection />
+      </div>
+    </>
   );
 };
 
-export default page;
+export default AboutUsPage;
