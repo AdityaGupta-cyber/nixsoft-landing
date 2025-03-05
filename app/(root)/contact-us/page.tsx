@@ -39,13 +39,13 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen pt-[150px] bg-gray-100 flex items-center justify-center px-4 py-12">
       <div className="container mx-auto max-w-6xl">
         <div className="grid md:grid-cols-2 gap-8 bg-white shadow-2xl rounded-2xl overflow-hidden">
           {/* Location Information */}
           <div className="bg-indigo-700 text-white p-10 flex flex-col justify-between">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Nix Softech</h2>
+              <h2 className="text-3xl font-bold mb-6">NixSoft</h2>
               <div className="space-y-4">
                 <div className="flex items-start space-x-4">
                   <MapPin className="w-6 h-6 flex-shrink-0 mt-1" />
