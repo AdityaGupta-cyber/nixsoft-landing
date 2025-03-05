@@ -106,34 +106,13 @@ const PricingInquiryForm: React.FC = () => {
       return;
     }
 
-    // Prepare submission data
     const submissionData = {
       ...formData,
       technologies: selectedTechnologies,
       services: selectedServices,
     };
 
-    // TODO: Replace with actual API call
     console.log("Form Submitted", submissionData);
-
-    // Optional: Reset form after submission
-    // resetForm();
-  };
-
-  // Optional form reset method
-  const resetForm = () => {
-    setFormData({
-      inquiry: "",
-      name: "",
-      email: "",
-      company: "",
-      jobTitle: "",
-      phone: "",
-      country: "",
-      privacyPolicy: false,
-    });
-    setSelectedTechnologies([]);
-    setSelectedServices([]);
   };
 
   return (
