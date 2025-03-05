@@ -48,6 +48,14 @@ const Footer = () => {
                 </a>
               </li>
               <li>
+                <a
+                  href="/careers"
+                  className="hover:text-white transition-colors"
+                >
+                  Careers
+                </a>
+              </li>
+              <li>
                 <a href="#" className="hover:text-white transition-colors">
                   Solutions
                 </a>
@@ -58,7 +66,10 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a
+                  href="contact-us"
+                  className="hover:text-white transition-colors"
+                >
                   Contact
                 </a>
               </li>

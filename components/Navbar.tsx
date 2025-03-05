@@ -1,10 +1,15 @@
-"use client"
-import { useState } from "react"
-import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu"
-import { cn } from "@/lib/utils"
-import { Search, MenuIcon, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
+"use client";
+import { useState } from "react";
+import {
+  HoveredLink,
+  Menu,
+  MenuItem,
+  ProductItem,
+} from "@/components/ui/navbar-menu";
+import { cn } from "@/lib/utils";
+import { Search, MenuIcon, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
@@ -14,17 +19,19 @@ export default function Navbar() {
       </div>
       <NavbarUtil />
     </div>
-  )
+  );
 }
 
 function NavbarUtil({ className }: { className?: string }) {
-  const [active, setActive] = useState<string | null>(null)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [active, setActive] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen)
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
   return (
-    <div className={cn("fixed inset-x-0 top-8 z-50 bg-white border-b", className)}>
+    <div
+      className={cn("fixed inset-x-0 top-8 z-50 bg-white border-b", className)}
+    >
       <div className="max-w-7xl mx-auto px-4 py-2">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -38,12 +45,20 @@ function NavbarUtil({ className }: { className?: string }) {
               <MenuItem setActive={setActive} active={active} item="Services">
                 <div className="flex flex-col space-y-4 text-sm">
                   <HoveredLink href="/web-dev">Web Development</HoveredLink>
-                  <HoveredLink href="/interface-design">Interface Design</HoveredLink>
-                  <HoveredLink href="/seo">Search Engine Optimization</HoveredLink>
+                  <HoveredLink href="/interface-design">
+                    Interface Design
+                  </HoveredLink>
+                  <HoveredLink href="/seo">
+                    Search Engine Optimization
+                  </HoveredLink>
                   <HoveredLink href="/branding">Branding</HoveredLink>
                 </div>
               </MenuItem>
-              <MenuItem setActive={setActive} active={active} item="Technologies">
+              <MenuItem
+                setActive={setActive}
+                active={active}
+                item="Technologies"
+              >
                 <div className="text-sm grid grid-cols-2 gap-10 p-4">
                   <ProductItem
                     title="Cloud Solutions"
@@ -71,18 +86,35 @@ function NavbarUtil({ className }: { className?: string }) {
 
           {/* Right side buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="default" className="bg-[#1E90FF] text-white hover:bg-blue-600 rounded-md font-semibold">
-              Get Pricing
-            </Button>
+            <Link href="/about-us">
+              <Button
+                variant="outline"
+                className="text-gray-700 border-gray-300 hover:bg-gray-100 rounded-md font-semibold"
+              >
+                About Us
+              </Button>
+            </Link>
+            <Link href="/pricing">
+              <Button
+                variant="default"
+                className="bg-[#1E90FF] text-white hover:bg-blue-600 rounded-md font-semibold"
+              >
+                Get Pricing
+              </Button>
+            </Link>
             <button className="p-2">
               <Search className="h-5 w-5" />
             </button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden ">
+          <div className="md:hidden">
             <button onClick={toggleMobileMenu} className="p-2">
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <MenuIcon className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
@@ -116,17 +148,27 @@ function NavbarUtil({ className }: { className?: string }) {
             >
               Resources
             </Link>
+            <Link
+              href="/about-us"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+            >
+              About Us
+            </Link>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="flex items-center px-5">
-              <Button variant="default" className="w-full bg-[#1E90FF] text-white hover:bg-blue-600 rounded-md">
-                Get Pricing
-              </Button>
+              <Link href="/pricing" className="w-full">
+                <Button
+                  variant="default"
+                  className="w-full bg-[#1E90FF] text-white hover:bg-blue-600 rounded-md"
+                >
+                  Get Pricing
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
-
