@@ -21,7 +21,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   githubUrl,
 }) => {
   return (
-    <div className="max-w-md rounded-lg overflow-hidden shadow-lg bg-white p-6">
+    <div className="max-w-md rounded-[10px] overflow-hidden shadow-lg bg-white p-6">
       <div className="flex flex-col">
         {/* Profile Picture */}
         <img
