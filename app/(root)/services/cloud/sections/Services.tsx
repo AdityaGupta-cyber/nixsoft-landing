@@ -98,33 +98,37 @@ const ServicesPage: React.FC = () => {
       description:
         "Get expert guidance on cloud platform selection, migration strategies, and optimization to ensure your business leverages the best cloud technologies.",
       services: [
-        "AWS, Azure, & Google Cloud Solutions",
-        "Virtualization (VMware, Hyper-V, Proxmox)",
-        "Hybrid Cloud Implementations",
+        "Cloud Platform Selection",
+        "Cloud Migration Strategies",
         "Cloud Cost Optimization",
+        "Multi-Cloud Management",
+        "Performance Tuning & Scaling",
       ],
       imagePosition: "right",
-      imageSrc: "/api/placeholder/600/400",
+      imageSrc:
+        "https://imgs.search.brave.com/I4JkG1BcFO6xGFd0bFPACM_WtiwFiWF4cDvL9ZwoXOs/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9jbG91ZC13aXRo/LW1vZGVsLWNvbXB1/dGVyLXdpdGgtd29y/ZC1tYXJrZXQtaXRf/OTAxMDAzLTQ2OTMu/anBnP3NlbXQ9YWlz/X2h5YnJpZA",
     },
     {
-      title: "Open Source Consulting Services",
+      title: "Virtualization (VMware, Hyper-V, Proxmox)",
       description:
-        "Get consulting, design, and deployment insights on enterprise-grade open source solutions tailored to your business needs.",
+        "Get consulting, design, and deployment insights on enterprise-grade virtualization solutions tailored to your business needs.",
       services: [
-        "Database Platforms",
-        "High-speed Data Pipeline",
-        "Kubernetes Platform",
-        "Hybrid and Multi-Cloud Platform",
-        "DevOps and Automation",
+        "VMware vSphere Deployment",
+        "Hyper-V Virtualization",
+        "Proxmox VE Management",
+        "Virtual Machine Migration",
+        "Resource Optimization",
       ],
       imagePosition: "left",
-      imageSrc: "/api/placeholder/600/400",
+      imageSrc:
+        "https://files.oaiusercontent.com/file-4eV64N9R3c4EzZKq3J6pAM?se=2025-03-18T07%3A02%3A44Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D6d8629d8-7ff7-4659-a422-7215ade09fec.webp&sig=BaSD0P8vfeK6cQ%2BspPp6f%2BVeUgWwZ52jwIRdh4duqFY%3D",
     },
     {
-      title: "Open Source Technical Services",
+      title: "Hybrid Cloud Implementations",
       description:
-        "Get our specialists to handle open source migration, installation, configuration, capacity planning and more. Run your open source software with ease.",
+        "Get our specialists to handle open source migration, installation, configuration, capacity planning, and more. Run your open-source software with ease.",
       services: [
+        "Hybrid Cloud Strategy",
         "PostgreSQL Database Management",
         "MongoDB Implementation",
         "Kubernetes Orchestration",
@@ -133,20 +137,23 @@ const ServicesPage: React.FC = () => {
         "Terraform Infrastructure",
       ],
       imagePosition: "right",
-      imageSrc: "/api/placeholder/600/400",
+      imageSrc:
+        "https://files.oaiusercontent.com/file-Pm9gkKc54EM4rZx91TRjdx?se=2025-03-18T07%3A04%3A20Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D6cb7468b-63d4-48b6-9a0d-a5db3c0c9d1c.webp&sig=jThTFSzBvI2ChjFgTHCbW5F9lZGkVGTI8Yn1ygTXg0k%3D",
     },
     {
-      title: "Security & Compliance Solutions",
+      title: "Cloud Cost Optimization",
       description:
-        "Ensure your infrastructure and applications meet industry standards with our comprehensive security assessment and implementation services.",
+        "Optimize cloud spending while maintaining high performance and security. Our experts help you reduce unnecessary costs and improve efficiency.",
       services: [
-        "Security Audits & Penetration Testing",
-        "Compliance Implementation (GDPR, HIPAA, SOC2)",
-        "Zero Trust Architecture",
-        "Identity & Access Management",
+        "Cost Analysis & Optimization",
+        "Rightsizing & Autoscaling",
+        "Reserved Instances & Savings Plans",
+        "Billing & Budgeting Strategies",
+        "FinOps Best Practices",
       ],
       imagePosition: "left",
-      imageSrc: "/api/placeholder/600/400",
+      imageSrc:
+        "https://files.oaiusercontent.com/file-KrDyv7h6xkxhTM9dV3UZg5?se=2025-03-18T07%3A05%3A12Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dd87eac7f-74c1-4e45-bb3b-ca86d050f8a7.webp&sig=BXzOEl5KaIqoIKjrc69XG8rd7tMbpH3GkKgm1NSrW5A%3D",
     },
   ];
 
