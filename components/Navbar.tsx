@@ -28,8 +28,8 @@ import Link from "next/link";
 export default function Navbar() {
   return (
     <div className="w-full fixed top-0 left-0 right-0 z-50">
-      <div className="w-full bg-[#1E90FF] text-white text-center py-2.5 text-sm md:text-md flex justify-center items-center md:tracking-wide">
-        Watch Video: Simplifying Kubernetes: The Rancher Way
+      <div className="w-full bg-[#1E90FF] text-white text-center py-2 text-sm md:text-md flex justify-center items-center md:tracking-wide">
+        Watch Video: Simplyfying Kubernetes: The Rancher Way
       </div>
       <NavbarUtil />
     </div>
@@ -49,16 +49,16 @@ function NavbarUtil({ className }: { className?: string }) {
 
   return (
     <div
-      className={cn("fixed inset-x-0 top-8 z-50 bg-red  shadow-sm", className)}
+      className={cn("fixed inset-x-0 top-8 z-50 bg-white border-b", className)}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 py-2">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-gray-800">nixsoft</h1>
+            <h1 className="text-2xl font-bold">nixsoft</h1>
           </Link>
 
-          {/* Desktop navigation */}
+          {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-6">
             <Menu setActive={setActive}>
               <MenuItem setActive={setActive} active={active} item="Services">
@@ -265,7 +265,6 @@ function NavbarUtil({ className }: { className?: string }) {
             </button>
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={toggleMobileMenu}
@@ -523,19 +522,14 @@ function NavbarUtil({ className }: { className?: string }) {
               </div>
             )}
           </div>
-
-          {/* CTA button */}
-          <div className="px-4 py-4">
-            <div className="flex items-center justify-between">
+          <div className="pt-4 pb-3 border-t border-gray-200">
+            <div className="flex items-center px-5">
               <Button
                 variant="default"
-                className="w-full bg-[#1E90FF] text-white hover:bg-blue-600 rounded-md py-2"
+                className="w-full bg-[#1E90FF] text-white hover:bg-blue-600 rounded-md"
               >
                 Get Pricing
               </Button>
-              <button className="ml-4 p-2 hover:bg-gray-100 rounded-full transition-colors">
-                <Search className="h-5 w-5 text-gray-600" />
-              </button>
             </div>
           </div>
         </div>
