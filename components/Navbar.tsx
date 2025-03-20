@@ -257,6 +257,7 @@ function NavbarUtil({ className }: { className?: string }) {
             <Button
               variant="default"
               className="bg-[#1E90FF] text-white hover:bg-blue-600 rounded-md font-semibold px-4 py-2"
+              onClick={() => (window.location.href = "/pricing")}
             >
               Get Pricing
             </Button>
@@ -527,6 +528,7 @@ function NavbarUtil({ className }: { className?: string }) {
               <Button
                 variant="default"
                 className="w-full bg-[#1E90FF] text-white hover:bg-blue-600 rounded-md"
+                onClick={() => (window.location.href = "/pricing")}
               >
                 Get Pricing
               </Button>
