@@ -121,7 +121,7 @@ const ServicesPage: React.FC = () => {
       ],
       imagePosition: "left",
       imageSrc:
-        "https://files.oaiusercontent.com/file-4eV64N9R3c4EzZKq3J6pAM?se=2025-03-18T07%3A02%3A44Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D6d8629d8-7ff7-4659-a422-7215ade09fec.webp&sig=BaSD0P8vfeK6cQ%2BspPp6f%2BVeUgWwZ52jwIRdh4duqFY%3D",
+        "https://plus.unsplash.com/premium_photo-1677448831822-4251f31b9fd5?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       title: "Hybrid Cloud Implementations",
@@ -138,7 +138,7 @@ const ServicesPage: React.FC = () => {
       ],
       imagePosition: "right",
       imageSrc:
-        "https://files.oaiusercontent.com/file-Pm9gkKc54EM4rZx91TRjdx?se=2025-03-18T07%3A04%3A20Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D6cb7468b-63d4-48b6-9a0d-a5db3c0c9d1c.webp&sig=jThTFSzBvI2ChjFgTHCbW5F9lZGkVGTI8Yn1ygTXg0k%3D",
+        "https://spacelift.io/_next/image?url=https%3A%2F%2Fspaceliftio.wpcomstaging.com%2Fwp-content%2Fuploads%2F2023%2F04%2F193.terraform-infrastructure-as-code.png&w=2048&q=100",
     },
     {
       title: "Cloud Cost Optimization",
@@ -153,7 +153,7 @@ const ServicesPage: React.FC = () => {
       ],
       imagePosition: "left",
       imageSrc:
-        "https://files.oaiusercontent.com/file-KrDyv7h6xkxhTM9dV3UZg5?se=2025-03-18T07%3A05%3A12Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Dd87eac7f-74c1-4e45-bb3b-ca86d050f8a7.webp&sig=BXzOEl5KaIqoIKjrc69XG8rd7tMbpH3GkKgm1NSrW5A%3D",
+        "https://www.mgt-commerce.com/astatic/assets/images/article/2023/155/hero.svg?v=1.0.4",
     },
   ];
 
