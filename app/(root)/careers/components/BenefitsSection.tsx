@@ -19,7 +19,7 @@ const BenefitCard: React.FC<{
   const Icon = IconMap[icon];
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md flex items-start space-x-4">
+    <div className="bg-white p-6 rounded-[10px] shadow-md flex items-start space-x-4">
       <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
         <Icon className="w-8 h-8 text-green-600" />
       </div>
