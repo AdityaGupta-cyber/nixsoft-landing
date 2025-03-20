@@ -238,7 +238,6 @@ function NavbarUtil({ className }: { className?: string }) {
                 <div className="flex flex-col space-y-4 text-sm p-6">
                   <HoveredLink href="/about-us">Our Company</HoveredLink>
                   <HoveredLink href="/careers">Careers</HoveredLink>
-                  <HoveredLink href="/about/values">Our Values</HoveredLink>
                 </div>
               </MenuItem>
               <MenuItem setActive={setActive} active={active} item="Insights">
@@ -470,12 +469,6 @@ function NavbarUtil({ className }: { className?: string }) {
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
                 >
                   Careers
-                </Link>
-                <Link
-                  href="/about/values"
-                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
-                >
-                  Our Values
                 </Link>
               </div>
             )}
