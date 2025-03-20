@@ -14,7 +14,7 @@ export const JobListings: React.FC = () => {
           {jobListings.map((job, index) => (
             <div
               key={index}
-              className="bg-white border rounded-lg p-6 shadow-md hover:shadow-xl transition-shadow"
+              className="bg-white border rounded-[10px] p-6 shadow-md hover:shadow-xl transition-shadow"
             >
               <div className="flex items-center mb-2">
                 <MapPin className="w-5 h-5 mr-2 text-gray-500" />

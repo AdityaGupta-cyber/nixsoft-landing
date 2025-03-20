@@ -6,7 +6,7 @@ export default function GetInTouch() {
   return (
     <div className="w-full py-16 bg-white">
       <div className="w-[80vw] mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2  md:gap-80 gap-20">
           {/* Contact Form */}
           <div className="space-y-8">
             <div>
@@ -49,7 +49,7 @@ export default function GetInTouch() {
           </div>
 
           {/* Contact Information */}
-          <div className="space-y-8 flex flex-col items-center justify-center">
+          <div className="flex flex-col items-start justify-start space-y-6 w-full md:w-[60%]">
             <div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">
                 Contact Information

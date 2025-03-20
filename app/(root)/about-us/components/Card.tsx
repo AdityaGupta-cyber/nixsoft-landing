@@ -8,7 +8,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ icon, heading, paragraphText }) => {
   return (
-    <div className="max-w-md bg-white rounded-lg shadow-lg p-8 m-4">
+    <div className="max-w-md bg-white rounded-[10px] shadow-lg p-8 m-4">
       <div className="flex flex-col items-start">
         <div className="bg-blue-100 p-4 rounded-full mb-6">{icon}</div>
 
