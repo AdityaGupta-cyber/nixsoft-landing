@@ -7,7 +7,21 @@ import {
   ProductItem,
 } from "@/components/ui/navbar-menu";
 import { cn } from "@/lib/utils";
-import { Search, MenuIcon, X } from "lucide-react";
+import {
+  Search,
+  Menu as MenuIcon,
+  X,
+  Cloud,
+  Settings,
+  Shield,
+  Server,
+  Monitor,
+  Brain,
+  Code,
+  Briefcase,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -25,8 +39,13 @@ export default function Navbar() {
 function NavbarUtil({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+
+  const toggleMobileSubmenu = (menu: string) => {
+    setMobileSubmenu(mobileSubmenu === menu ? null : menu);
+  };
 
   return (
     <div
@@ -39,223 +58,146 @@ function NavbarUtil({ className }: { className?: string }) {
             <h1 className="text-2xl font-bold">nixsoft</h1>
           </Link>
 
-          {/* All navigation items and buttons aligned to the right */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Desktop menu */}
+          <div className="hidden md:flex items-center space-x-6">
             <Menu setActive={setActive}>
               <MenuItem setActive={setActive} active={active} item="Services">
-                <div
-                  className="text-sm grid grid-cols-2 gap-6 p-4 max-h-96 overflow-y-auto scrollbar-hide"
-                  style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-                >
+                <div className="grid grid-cols-2 gap-8 p-6 max-w-4xl">
                   <div>
-                    <h3 className="font-bold mb-2">Cloud & Virtualization 🌩</h3>
-                    <ul className="space-y-1">
-                      <li>
-                        <HoveredLink href="/services/cloud/aws">
-                          AWS, Azure, & Google Cloud Solutions
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/cloud/virtualization">
-                          Virtualization (VMware, Hyper-V, Proxmox)
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/cloud/hybrid">
-                          Hybrid Cloud Implementations
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/cloud/optimization">
-                          Cloud Cost Optimization
-                        </HoveredLink>
-                      </li>
-                    </ul>
+                    <div className="mb-6">
+                      <h3 className="font-bold mb-2 flex items-center">
+                        <Cloud className="h-4 w-4 mr-2 text-blue-600" />
+                        Cloud & Virtualization
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-1">
+                        AWS, Azure, & Google Cloud Solutions
+                      </p>
+                      <HoveredLink
+                        href="/services/cloud"
+                        className="text-sm text-blue-600"
+                      >
+                        Read More →
+                      </HoveredLink>
+                    </div>
 
-                    <h3 className="font-bold mt-4 mb-2">
-                      DevOps & Automation ⚙️
-                    </h3>
-                    <ul className="space-y-1">
-                      <li>
-                        <HoveredLink href="/services/devops/cicd">
-                          CI/CD Pipeline Implementation
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/devops/iac">
-                          Infrastructure as Code (IaC)
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/devops/kubernetes">
-                          Kubernetes & Container Orchestration
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/devops/monitoring">
-                          Monitoring & Performance Optimization
-                        </HoveredLink>
-                      </li>
-                    </ul>
+                    <div className="mb-6">
+                      <h3 className="font-bold mb-2 flex items-center">
+                        <Settings className="h-4 w-4 mr-2 text-blue-600" />
+                        DevOps & Automation
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-1">
+                        CI/CD Pipeline Implementation
+                      </p>
+                      <HoveredLink
+                        href="/services/devops"
+                        className="text-sm text-blue-600"
+                      >
+                        Read More →
+                      </HoveredLink>
+                    </div>
 
-                    <h3 className="font-bold mt-4 mb-2">
-                      Cybersecurity Solutions 🔒
-                    </h3>
-                    <ul className="space-y-1">
-                      <li>
-                        <HoveredLink href="/services/security/pentesting">
-                          Vulnerability Assessments & Penetration Testing
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/security/siem">
-                          SIEM & Log Management
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/security/compliance">
-                          Security Policy & Compliance Audits
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/security/endpoint">
-                          Endpoint & Network Security
-                        </HoveredLink>
-                      </li>
-                    </ul>
+                    <div className="mb-6">
+                      <h3 className="font-bold mb-2 flex items-center">
+                        <Shield className="h-4 w-4 mr-2 text-blue-600" />
+                        Cybersecurity Solutions
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-1">
+                        Vulnerability Assessments & Penetration Testing
+                      </p>
+                      <HoveredLink
+                        href="/services/security"
+                        className="text-sm text-blue-600"
+                      >
+                        Read More →
+                      </HoveredLink>
+                    </div>
 
-                    <h3 className="font-bold mt-4 mb-2">
-                      IT Infrastructure Management 🏗
-                    </h3>
-                    <ul className="space-y-1">
-                      <li>
-                        <HoveredLink href="/services/infrastructure/server">
-                          Server & Network Administration
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/infrastructure/cloud">
-                          Cloud & On-Prem Infrastructure
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/infrastructure/security">
-                          IT Security & Compliance
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/infrastructure/backup">
-                          Data Backup & Disaster Recovery
-                        </HoveredLink>
-                      </li>
-                    </ul>
+                    <div>
+                      <h3 className="font-bold mb-2 flex items-center">
+                        <Server className="h-4 w-4 mr-2 text-blue-600" />
+                        IT Infrastructure Management
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-1">
+                        Server & Network Administration
+                      </p>
+                      <HoveredLink
+                        href="/services/infrastructure"
+                        className="text-sm text-blue-600"
+                      >
+                        Read More →
+                      </HoveredLink>
+                    </div>
                   </div>
 
                   <div>
-                    <h3 className="font-bold mb-2">Managed Services 🖥</h3>
-                    <ul className="space-y-1">
-                      <li>
-                        <HoveredLink href="/services/managed/support">
-                          24/7 IT Support & Monitoring
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/managed/database">
-                          Database Management
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/managed/patch">
-                          Patch Management & System Hardening
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/managed/outsourcing">
-                          End-to-End IT Outsourcing
-                        </HoveredLink>
-                      </li>
-                    </ul>
+                    <div className="mb-6">
+                      <h3 className="font-bold mb-2 flex items-center">
+                        <Monitor className="h-4 w-4 mr-2 text-blue-600" />
+                        Managed Services
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-1">
+                        24/7 IT Support & Monitoring
+                      </p>
+                      <HoveredLink
+                        href="/services/managed"
+                        className="text-sm text-blue-600"
+                      >
+                        Read More →
+                      </HoveredLink>
+                    </div>
 
-                    <h3 className="font-bold mt-4 mb-2">AI & Analytics 🤖📊</h3>
-                    <ul className="space-y-1">
-                      <li>
-                        <HoveredLink href="/services/ai/aiops">
-                          AI-Powered IT Operations (AIOps)
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/ai/analytics">
-                          Data Analytics & Visualization
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/ai/predictive">
-                          Predictive Maintenance for IT Systems
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/ai/bi">
-                          Business Intelligence Solutions
-                        </HoveredLink>
-                      </li>
-                    </ul>
+                    <div className="mb-6">
+                      <h3 className="font-bold mb-2 flex items-center">
+                        <Brain className="h-4 w-4 mr-2 text-blue-600" />
+                        AI & Analytics
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-1">
+                        AI-Powered IT Operations (AIOps)
+                      </p>
+                      <HoveredLink
+                        href="/services/ai"
+                        className="text-sm text-blue-600"
+                      >
+                        Read More →
+                      </HoveredLink>
+                    </div>
 
-                    <h3 className="font-bold mt-4 mb-2">
-                      Software Development & Integration 💻
-                    </h3>
-                    <ul className="space-y-1">
-                      <li>
-                        <HoveredLink href="/services/development/custom">
-                          Custom Application Development
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/development/api">
-                          API Development & Integration
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/development/web">
-                          Web & Mobile App Development
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/development/legacy">
-                          Legacy System Modernization
-                        </HoveredLink>
-                      </li>
-                    </ul>
+                    <div className="mb-6">
+                      <h3 className="font-bold mb-2 flex items-center">
+                        <Code className="h-4 w-4 mr-2 text-blue-600" />
+                        Software Development
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-1">
+                        Custom Application Development
+                      </p>
+                      <HoveredLink
+                        href="/services/development"
+                        className="text-sm text-blue-600"
+                      >
+                        Read More →
+                      </HoveredLink>
+                    </div>
 
-                    <h3 className="font-bold mt-4 mb-2">
-                      IT Consulting & Strategy 🧠
-                    </h3>
-                    <ul className="space-y-1">
-                      <li>
-                        <HoveredLink href="/services/consulting/transformation">
-                          Digital Transformation Consulting
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/consulting/roadmap">
-                          Technology Roadmap Planning
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/consulting/governance">
-                          IT Governance & Compliance Advisory
-                        </HoveredLink>
-                      </li>
-                      <li>
-                        <HoveredLink href="/services/consulting/cost">
-                          Cost Optimization & Vendor Management
-                        </HoveredLink>
-                      </li>
-                    </ul>
+                    <div>
+                      <h3 className="font-bold mb-2 flex items-center">
+                        <Briefcase className="h-4 w-4 mr-2 text-blue-600" />
+                        IT Consulting & Strategy
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-1">
+                        Digital Transformation Consulting
+                      </p>
+                      <HoveredLink
+                        href="/services/consulting"
+                        className="text-sm text-blue-600"
+                      >
+                        Read More →
+                      </HoveredLink>
+                    </div>
                   </div>
                 </div>
               </MenuItem>
               <MenuItem setActive={setActive} active={active} item="Solutions">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 max-w-4xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 max-w-4xl">
                   <ProductItem
                     title="AI-Driven Observability & IT Infrastructure Monitoring"
                     href="/solutions/observability"
@@ -276,8 +218,8 @@ function NavbarUtil({ className }: { className?: string }) {
                   />
                 </div>
               </MenuItem>
-              <MenuItem setActive={setActive} active={active} item="Tech Stack">
-                <div className="text-sm grid grid-cols-2 gap-10 p-4">
+              <MenuItem setActive={setActive} active={active} item="Our Stack">
+                <div className="text-sm grid grid-cols-2 gap-10 p-6">
                   <ProductItem
                     title="Cloud Solutions"
                     href="/tech/cloud"
@@ -293,14 +235,14 @@ function NavbarUtil({ className }: { className?: string }) {
                 </div>
               </MenuItem>
               <MenuItem setActive={setActive} active={active} item="About Us">
-                <div className="flex flex-col space-y-4 text-sm">
+                <div className="flex flex-col space-y-4 text-sm p-6">
                   <HoveredLink href="/about-us">Our Company</HoveredLink>
                   <HoveredLink href="/careers">Careers</HoveredLink>
                   <HoveredLink href="/about/values">Our Values</HoveredLink>
                 </div>
               </MenuItem>
               <MenuItem setActive={setActive} active={active} item="Insights">
-                <div className="flex flex-col space-y-4 text-sm">
+                <div className="flex flex-col space-y-4 text-sm p-6">
                   <HoveredLink href="/insights/blog">Blog</HoveredLink>
                   <HoveredLink href="/insights/case-studies">
                     Case Studies
@@ -314,22 +256,26 @@ function NavbarUtil({ className }: { className?: string }) {
             </Menu>
             <Button
               variant="default"
-              className="bg-[#1E90FF] text-white hover:bg-blue-600 rounded-md font-semibold"
+              className="bg-[#1E90FF] text-white hover:bg-blue-600 rounded-md font-semibold px-4 py-2"
+              onClick={() => (window.location.href = "/pricing")}
             >
               Get Pricing
             </Button>
-            <button className="p-2">
-              <Search className="h-5 w-5" />
+            <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+              <Search className="h-5 w-5 text-gray-600" />
             </button>
           </div>
 
-          {/* Mobile menu button */}
           <div className="md:hidden">
-            <button onClick={toggleMobileMenu} className="p-2">
+            <button
+              onClick={toggleMobileMenu}
+              className="p-2 rounded-md hover:bg-gray-100 transition-colors"
+              aria-label="Menu"
+            >
               {mobileMenuOpen ? (
-                <X className="h-6 w-6" />
+                <X className="h-6 w-6 text-gray-700" />
               ) : (
-                <MenuIcon className="h-6 w-6" />
+                <MenuIcon className="h-6 w-6 text-gray-700" />
               )}
             </button>
           </div>
@@ -338,44 +284,251 @@ function NavbarUtil({ className }: { className?: string }) {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link
-              href="/services"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+        <div className="md:hidden border-t border-gray-200 bg-red shadow-lg">
+          {/* Services dropdown */}
+          <div className="border-b border-gray-100">
+            <button
+              onClick={() => toggleMobileSubmenu("services")}
+              className="flex justify-between items-center w-full px-4 py-3 text-left text-base font-medium text-gray-700"
             >
-              Services
-            </Link>
-            <Link
-              href="/solutions"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              <span>Services</span>
+              {mobileSubmenu === "services" ? (
+                <ChevronDown className="h-5 w-5 text-gray-500" />
+              ) : (
+                <ChevronRight className="h-5 w-5 text-gray-500" />
+              )}
+            </button>
+            {mobileSubmenu === "services" && (
+              <div className="px-4 py-2 space-y-3 bg-gray-50">
+                <Link
+                  href="/services/cloud"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  <div className="flex items-center">
+                    <Cloud className="h-4 w-4 mr-2 text-blue-600" />
+                    <span>Cloud & Virtualization</span>
+                  </div>
+                </Link>
+                <Link
+                  href="/services/devops"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  <div className="flex items-center">
+                    <Settings className="h-4 w-4 mr-2 text-blue-600" />
+                    <span>DevOps & Automation</span>
+                  </div>
+                </Link>
+                <Link
+                  href="/services/security"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  <div className="flex items-center">
+                    <Shield className="h-4 w-4 mr-2 text-blue-600" />
+                    <span>Cybersecurity Solutions</span>
+                  </div>
+                </Link>
+                <Link
+                  href="/services/infrastructure"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  <div className="flex items-center">
+                    <Server className="h-4 w-4 mr-2 text-blue-600" />
+                    <span>IT Infrastructure Management</span>
+                  </div>
+                </Link>
+                <Link
+                  href="/services/managed"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  <div className="flex items-center">
+                    <Monitor className="h-4 w-4 mr-2 text-blue-600" />
+                    <span>Managed Services</span>
+                  </div>
+                </Link>
+                <Link
+                  href="/services/ai"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  <div className="flex items-center">
+                    <Brain className="h-4 w-4 mr-2 text-blue-600" />
+                    <span>AI & Analytics</span>
+                  </div>
+                </Link>
+                <Link
+                  href="/services/development"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  <div className="flex items-center">
+                    <Code className="h-4 w-4 mr-2 text-blue-600" />
+                    <span>Software Development</span>
+                  </div>
+                </Link>
+                <Link
+                  href="/services/consulting"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  <div className="flex items-center">
+                    <Briefcase className="h-4 w-4 mr-2 text-blue-600" />
+                    <span>IT Consulting & Strategy</span>
+                  </div>
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Solutions dropdown */}
+          <div className="border-b border-gray-100">
+            <button
+              onClick={() => toggleMobileSubmenu("solutions")}
+              className="flex justify-between items-center w-full px-4 py-3 text-left text-base font-medium text-gray-700"
             >
-              Solutions
-            </Link>
-            <Link
-              href="/tech-stack"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              <span>Solutions</span>
+              {mobileSubmenu === "solutions" ? (
+                <ChevronDown className="h-5 w-5 text-gray-500" />
+              ) : (
+                <ChevronRight className="h-5 w-5 text-gray-500" />
+              )}
+            </button>
+            {mobileSubmenu === "solutions" && (
+              <div className="px-4 py-2 space-y-3 bg-gray-50">
+                <Link
+                  href="/solutions/observability"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  AI-Driven Observability & IT Infrastructure Monitoring
+                </Link>
+                <Link
+                  href="/solutions/valguard"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  Nix-ValGuard - Continuous Linux VA & Compliance Monitoring
+                </Link>
+                <Link
+                  href="/solutions/aiops"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  AI-Powered IT Operations (AIOps)
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Our Stack dropdown */}
+          <div className="border-b border-gray-100">
+            <button
+              onClick={() => toggleMobileSubmenu("stack")}
+              className="flex justify-between items-center w-full px-4 py-3 text-left text-base font-medium text-gray-700"
             >
-              Tech Stack
-            </Link>
-            <Link
-              href="/about-us"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              <span>Our Stack</span>
+              {mobileSubmenu === "stack" ? (
+                <ChevronDown className="h-5 w-5 text-gray-500" />
+              ) : (
+                <ChevronRight className="h-5 w-5 text-gray-500" />
+              )}
+            </button>
+            {mobileSubmenu === "stack" && (
+              <div className="px-4 py-2 space-y-3 bg-gray-50">
+                <Link
+                  href="/tech/cloud"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  Cloud Solutions
+                </Link>
+                <Link
+                  href="/tech/devops"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  DevOps
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* About Us dropdown */}
+          <div className="border-b border-gray-100">
+            <button
+              onClick={() => toggleMobileSubmenu("about")}
+              className="flex justify-between items-center w-full px-4 py-3 text-left text-base font-medium text-gray-700"
             >
-              About Us
-            </Link>
-            <Link
-              href="/insights"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              <span>About Us</span>
+              {mobileSubmenu === "about" ? (
+                <ChevronDown className="h-5 w-5 text-gray-500" />
+              ) : (
+                <ChevronRight className="h-5 w-5 text-gray-500" />
+              )}
+            </button>
+            {mobileSubmenu === "about" && (
+              <div className="px-4 py-2 space-y-3 bg-gray-50">
+                <Link
+                  href="/about-us"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  Our Company
+                </Link>
+                <Link
+                  href="/careers"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  Careers
+                </Link>
+                <Link
+                  href="/about/values"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  Our Values
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Insights dropdown */}
+          <div className="border-b border-gray-100">
+            <button
+              onClick={() => toggleMobileSubmenu("insights")}
+              className="flex justify-between items-center w-full px-4 py-3 text-left text-base font-medium text-gray-700"
             >
-              Insights
-            </Link>
+              <span>Insights</span>
+              {mobileSubmenu === "insights" ? (
+                <ChevronDown className="h-5 w-5 text-gray-500" />
+              ) : (
+                <ChevronRight className="h-5 w-5 text-gray-500" />
+              )}
+            </button>
+            {mobileSubmenu === "insights" && (
+              <div className="px-4 py-2 space-y-3 bg-gray-50">
+                <Link
+                  href="/insights/blog"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  Blog
+                </Link>
+                <Link
+                  href="/insights/case-studies"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  Case Studies
+                </Link>
+                <Link
+                  href="/insights/whitepapers"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  Whitepapers
+                </Link>
+                <Link
+                  href="/insights/webinars"
+                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                >
+                  Webinars
+                </Link>
+              </div>
+            )}
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="flex items-center px-5">
               <Button
                 variant="default"
                 className="w-full bg-[#1E90FF] text-white hover:bg-blue-600 rounded-md"
+                onClick={() => (window.location.href = "/pricing")}
               >
                 Get Pricing
               </Button>
