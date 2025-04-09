@@ -121,7 +121,7 @@ function NavbarUtil({ className }: { className?: string }) {
                         Server & Network Administration
                       </p>
                       <HoveredLink
-                        href="/services/infrastructure"
+                        href="/services/it-management"
                         className="text-sm text-blue-600"
                       >
                         Read More →
@@ -139,7 +139,7 @@ function NavbarUtil({ className }: { className?: string }) {
                         24/7 IT Support & Monitoring
                       </p>
                       <HoveredLink
-                        href="/services/managed"
+                        href="/services/it-management"
                         className="text-sm text-blue-600"
                       >
                         Read More →
