@@ -139,7 +139,7 @@ function NavbarUtil({ className }: { className?: string }) {
                         24/7 IT Support & Monitoring
                       </p>
                       <HoveredLink
-                        href="/services/it-management"
+                        href="/services/managed"
                         className="text-sm text-blue-600"
                       >
                         Read More →
