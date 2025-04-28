@@ -15,6 +15,29 @@ interface FormData {
   privacyPolicy: boolean;
 }
 
+interface PricingItem {
+  name: string;
+  price: number;
+}
+
+interface SubmissionData {
+  inquiry: string;
+  name: string;
+  email: string;
+  company: string;
+  jobTitle: string;
+  phone: string;
+  country: string;
+  privacyPolicy: boolean;
+  technologies: string[];
+  services: string[];
+  pricing: {
+    technologies: PricingItem[];
+    services: PricingItem[];
+    totalCost: number;
+  };
+}
+
 const PricingInquiryForm: React.FC = () => {
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
@@ -74,97 +97,8 @@ const PricingInquiryForm: React.FC = () => {
     return techCost + serviceCost;
   };
 
-  // Create an HTML email template with the submission data
-  const createEmailTemplate = (submissionData: any) => {
-    const totalCost = calculateTotalCost();
-    
-    // Function to format technology and service items
-    const formatItems = (items: any[]) => {
-      return items.map(item => {
-        return `<tr>
-          <td style="padding: 8px; border-bottom: 1px solid #eee;">${item.name}</td>
-          <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: right;">$${item.price.toLocaleString()}</td>
-        </tr>`;
-      }).join('');
-    };
-    
-    // Format technologies and services for the email
-    const techItems = formatItems(submissionData.pricing.technologies);
-    const serviceItems = formatItems(submissionData.pricing.services);
-    
-    return `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <style>
-          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-          .header { background-color: #4A7EFF; color: white; padding: 20px; text-align: center; }
-          .content { padding: 20px; }
-          .footer { margin-top: 30px; text-align: center; font-size: 12px; color: #666; }
-          table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-          .total { font-weight: bold; font-size: 18px; text-align: right; padding: 10px 0; }
-          .section { margin: 25px 0; padding-bottom: 15px; border-bottom: 1px solid #eee; }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <h1>New Pricing Inquiry</h1>
-          </div>
-          <div class="content">
-            <div class="section">
-              <h2>Customer Information</h2>
-              <p><strong>Name:</strong> ${submissionData.name}</p>
-              <p><strong>Email:</strong> ${submissionData.email}</p>
-              <p><strong>Company:</strong> ${submissionData.company}</p>
-              <p><strong>Job Title:</strong> ${submissionData.jobTitle}</p>
-              <p><strong>Phone:</strong> ${submissionData.phone}</p>
-              <p><strong>Country:</strong> ${submissionData.country}</p>
-              ${submissionData.inquiry ? `<p><strong>Inquiry:</strong> ${submissionData.inquiry}</p>` : ''}
-            </div>
-            
-            <div class="section">
-              <h2>Selected Technologies</h2>
-              ${submissionData.technologies.length > 0 ? `
-                <table>
-                  <tr>
-                    <th style="text-align: left; padding: 8px; border-bottom: 2px solid #ddd;">Technology</th>
-                    <th style="text-align: right; padding: 8px; border-bottom: 2px solid #ddd;">Price</th>
-                  </tr>
-                  ${techItems}
-                </table>
-              ` : '<p>No technologies selected</p>'}
-            </div>
-            
-            <div class="section">
-              <h2>Selected Services</h2>
-              ${submissionData.services.length > 0 ? `
-                <table>
-                  <tr>
-                    <th style="text-align: left; padding: 8px; border-bottom: 2px solid #ddd;">Service</th>
-                    <th style="text-align: right; padding: 8px; border-bottom: 2px solid #ddd;">Price</th>
-                  </tr>
-                  ${serviceItems}
-                </table>
-              ` : '<p>No services selected</p>'}
-            </div>
-            
-            <div class="total">
-              Total: $${totalCost.toLocaleString()}
-            </div>
-          </div>
-          <div class="footer">
-            <p>This is an automated email sent from your pricing inquiry form.</p>
-          </div>
-        </div>
-      </body>
-      </html>
-    `;
-  };
-
   // Send data to a serverless function or API route that will handle the email sending
-  const sendFormData = async (submissionData: any) => {
+  const sendFormData = async (submissionData: SubmissionData) => {
     try {
       // Here we'll create a server-side API route to handle the MailerLite integration
       const response = await fetch("/api/submit-inquiry", {
