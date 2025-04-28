@@ -1,15 +1,17 @@
 "use client";
 import React from "react";
+import { Shield, Database, Lock, Globe, Clock, AlertCircle } from "lucide-react";
 
 // Define interfaces for your props
 interface ServiceItem {
   name: string;
+  icon?: React.ReactNode;
 }
 
 interface ServiceSectionProps {
   title: string;
   description: string;
-  services: ServiceItem[] | string[];
+  services: ServiceItem[];
   imagePosition?: "right" | "left";
   imageSrc?: string;
   index?: number;
@@ -37,13 +39,13 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
             <h2 className="text-3xl font-bold text-indigo-900 mb-4">{title}</h2>
             <p className="text-gray-700 mb-6">{description}</p>
 
-            <div className="space-y-2 mb-8">
+            <div className="space-y-4 mb-8">
               {services.map((service, index) => (
                 <div key={index} className="flex items-start">
-                  <span className="text-indigo-500 mr-2">—</span>
-                  <span>
-                    {typeof service === "string" ? service : service.name}
-                  </span>
+                  <div className="text-indigo-500 mr-3 mt-1">
+                    {service.icon}
+                  </div>
+                  <span className="text-gray-700">{service.name}</span>
                 </div>
               ))}
             </div>
@@ -82,81 +84,154 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   );
 };
 
-interface ServiceData {
-  title: string;
-  description: string;
-  services: string[];
-  imagePosition: "right" | "left";
-  imageSrc: string;
-}
-
 const ServicesPage: React.FC = () => {
-  // Data for all service sections
-  const servicesData: ServiceData[] = [
+  // Updated data for all service sections based on the new content
+  const servicesData = [
     {
       title: "24/7 IT Support & Monitoring",
       description:
-        "Round-the-clock IT support and proactive monitoring to ensure your systems are always running at peak performance. Our expert team is available 24/7 to handle any technical issues and prevent potential problems before they impact your business.",
+        "Nixsoft Technologies provides comprehensive 24/7 IT support and monitoring that ensures continuous assistance and proactive management for all your critical systems.",
       services: [
-        "24/7 Help Desk Support",
-        "Proactive System Monitoring",
-        "Incident Response & Resolution",
-        "Performance Optimization",
-        "Remote Troubleshooting",
-        "User Support & Training"
+        {
+          name: "Tiered Support System (Tier 1, 2, 3) with dedicated 24/7 teams",
+          icon: <Clock size={20} />
+        },
+        {
+          name: "Proactive monitoring with real-time alerting and automation",
+          icon: <AlertCircle size={20} />
+        },
+        {
+          name: "Multiple communication channels: Phone, Email, Live Chat, Ticketing",
+          icon: <Globe size={20} />
+        },
+        {
+          name: "Regular system checks and security monitoring",
+          icon: <Shield size={20} />
+        },
+        {
+          name: "Knowledge base access and detailed incident logging",
+          icon: <Database size={20} />
+        }
       ],
       imagePosition: "right",
-      imageSrc:
-        "https://imgs.search.brave.com/I4JkG1BcFO6xGFd0bFPACM_WtiwFiWF4cDvL9ZwoXOs/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9jbG91ZC13aXRo/LW1vZGVsLWNvbXB1/dGVyLXdpdGgtd29y/ZC1tYXJrZXQtaXRf/OTAxMDAzLTQ2OTMu/anBnP3NlbXQ9YWlz/X2h5YnJpZA",
+      imageSrc: "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
     },
     {
-      title: "Database Management",
+      title: "Preventive IT Management",
       description:
-        "Expert management of your database infrastructure including MySQL, PostgreSQL, and other database systems. We ensure optimal performance, security, and reliability of your critical data assets.",
+        "Our preventive maintenance services help you avoid costly downtime and ensure your systems are always performing at their best with scheduled maintenance and security scanning.",
       services: [
-        "Database Installation & Configuration",
-        "Performance Tuning & Optimization",
-        "Backup & Recovery Management",
-        "Security & Access Control",
-        "Database Migration Services",
-        "Query Optimization & Indexing"
+        {
+          name: "Regular system checks and diagnostics",
+          icon: <AlertCircle size={20} />
+        },
+        {
+          name: "Comprehensive disaster recovery planning",
+          icon: <Shield size={20} />
+        },
+        {
+          name: "Advanced security monitoring and threat detection",
+          icon: <Lock size={20} />
+        },
+        {
+          name: "Scheduled maintenance and updates",
+          icon: <Clock size={20} />
+        },
+        {
+          name: "Performance optimization and tuning",
+          icon: <Database size={20} />
+        }
       ],
       imagePosition: "left",
-      imageSrc:
-        "https://plus.unsplash.com/premium_photo-1677448831822-4251f31b9fd5?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      imageSrc: "https://images.unsplash.com/photo-1581472723648-909f4851d4ae?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
     },
     {
-      title: "Patch Management & System Hardening",
+      title: "Scalable Support Solutions",
       description:
-        "Comprehensive patch management and system hardening services to protect your infrastructure from vulnerabilities. We implement industry best practices to ensure your systems are secure and up-to-date.",
+        "Our cloud-based support scales with your business needs, providing flexible resources that can be rapidly deployed during high-demand periods or critical incidents.",
       services: [
-        "Automated Patch Deployment",
-        "Vulnerability Assessment",
-        "Security Configuration Management",
-        "Compliance Auditing",
-        "System Hardening Implementation",
-        "Security Policy Enforcement"
+        {
+          name: "Cloud-based support infrastructure",
+          icon: <Globe size={20} />
+        },
+        {
+          name: "On-demand resource availability",
+          icon: <Database size={20} />
+        },
+        {
+          name: "Elastic capacity for peak demand periods",
+          icon: <Clock size={20} />
+        },
+        {
+          name: "Remote access and management capabilities",
+          icon: <Shield size={20} />
+        },
+        {
+          name: "Cost-effective scaling options",
+          icon: <AlertCircle size={20} />
+        }
       ],
       imagePosition: "right",
-      imageSrc:
-        "https://spacelift.io/_next/image?url=https%3A%2F%2Fspaceliftio.wpcomstaging.com%2Fwp-content%2Fuploads%2F2023%2F04%2F193.terraform-infrastructure-as-code.png&w=2048&q=100",
+      imageSrc: "https://images.unsplash.com/photo-1600267175161-cfaa711b4a81?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
     },
     {
-      title: "End-to-End IT Outsourcing",
+      title: "24/7 Help Desk Services",
       description:
-        "Complete IT outsourcing solutions that handle all aspects of your technology infrastructure. From day-to-day operations to strategic planning, we provide comprehensive IT services tailored to your business needs.",
+        "Our round-the-clock help desk ensures your issues are addressed immediately with standardized procedures and clear escalation protocols for urgent matters.",
       services: [
-        "IT Infrastructure Management",
-        "Service Desk Operations",
-        "Network & Security Management",
-        "Cloud Services Management",
-        "IT Asset Management",
-        "Strategic IT Planning"
+        {
+          name: "Standard Operating Procedures for common issues",
+          icon: <Database size={20} />
+        },
+        {
+          name: "Clear escalation protocols for urgent matters",
+          icon: <AlertCircle size={20} />
+        },
+        {
+          name: "Advanced ticket management and tracking",
+          icon: <Clock size={20} />
+        },
+        {
+          name: "Multi-channel support access",
+          icon: <Globe size={20} />
+        },
+        {
+          name: "Continuous service improvement processes",
+          icon: <Shield size={20} />
+        }
       ],
       imagePosition: "left",
-      imageSrc:
-        "https://www.mgt-commerce.com/astatic/assets/images/article/2023/155/hero.svg?v=1.0.4",
+      imageSrc: "https://images.unsplash.com/photo-1531973576160-7125cd663d86?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
     },
+    {
+      title: "Professional Tools & Partnerships",
+      description:
+        "We leverage industry-leading tools and strategic partnerships to deliver comprehensive monitoring, management, and security services across your entire IT ecosystem.",
+      services: [
+        {
+          name: "Remote Monitoring & Management (RMM) Tools",
+          icon: <Globe size={20} />
+        },
+        {
+          name: "IT Service Management (ITSM) Software",
+          icon: <Database size={20} />
+        },
+        {
+          name: "Advanced ticketing and collaboration platforms",
+          icon: <Clock size={20} />
+        },
+        {
+          name: "Enterprise-grade security solutions",
+          icon: <Shield size={20} />
+        },
+        {
+          name: "Specialized vendor partnerships",
+          icon: <AlertCircle size={20} />
+        }
+      ],
+      imagePosition: "right",
+      imageSrc: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+    }
   ];
 
   return (
@@ -167,7 +242,7 @@ const ServicesPage: React.FC = () => {
           title={service.title}
           description={service.description}
           services={service.services}
-          imagePosition={service.imagePosition}
+          imagePosition={service.imagePosition as "left" | "right"}
           imageSrc={service.imageSrc}
           index={index}
         />
