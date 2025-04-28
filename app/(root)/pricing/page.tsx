@@ -18,6 +18,11 @@ interface FormData {
 const PricingInquiryForm: React.FC = () => {
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
   const [formData, setFormData] = useState<FormData>({
     inquiry: "",
     name: "",
@@ -69,8 +74,123 @@ const PricingInquiryForm: React.FC = () => {
     return techCost + serviceCost;
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  // Create an HTML email template with the submission data
+  const createEmailTemplate = (submissionData: any) => {
+    const totalCost = calculateTotalCost();
+    
+    // Function to format technology and service items
+    const formatItems = (items: any[]) => {
+      return items.map(item => {
+        return `<tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;">${item.name}</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee; text-align: right;">$${item.price.toLocaleString()}</td>
+        </tr>`;
+      }).join('');
+    };
+    
+    // Format technologies and services for the email
+    const techItems = formatItems(submissionData.pricing.technologies);
+    const serviceItems = formatItems(submissionData.pricing.services);
+    
+    return `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background-color: #4A7EFF; color: white; padding: 20px; text-align: center; }
+          .content { padding: 20px; }
+          .footer { margin-top: 30px; text-align: center; font-size: 12px; color: #666; }
+          table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+          .total { font-weight: bold; font-size: 18px; text-align: right; padding: 10px 0; }
+          .section { margin: 25px 0; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>New Pricing Inquiry</h1>
+          </div>
+          <div class="content">
+            <div class="section">
+              <h2>Customer Information</h2>
+              <p><strong>Name:</strong> ${submissionData.name}</p>
+              <p><strong>Email:</strong> ${submissionData.email}</p>
+              <p><strong>Company:</strong> ${submissionData.company}</p>
+              <p><strong>Job Title:</strong> ${submissionData.jobTitle}</p>
+              <p><strong>Phone:</strong> ${submissionData.phone}</p>
+              <p><strong>Country:</strong> ${submissionData.country}</p>
+              ${submissionData.inquiry ? `<p><strong>Inquiry:</strong> ${submissionData.inquiry}</p>` : ''}
+            </div>
+            
+            <div class="section">
+              <h2>Selected Technologies</h2>
+              ${submissionData.technologies.length > 0 ? `
+                <table>
+                  <tr>
+                    <th style="text-align: left; padding: 8px; border-bottom: 2px solid #ddd;">Technology</th>
+                    <th style="text-align: right; padding: 8px; border-bottom: 2px solid #ddd;">Price</th>
+                  </tr>
+                  ${techItems}
+                </table>
+              ` : '<p>No technologies selected</p>'}
+            </div>
+            
+            <div class="section">
+              <h2>Selected Services</h2>
+              ${submissionData.services.length > 0 ? `
+                <table>
+                  <tr>
+                    <th style="text-align: left; padding: 8px; border-bottom: 2px solid #ddd;">Service</th>
+                    <th style="text-align: right; padding: 8px; border-bottom: 2px solid #ddd;">Price</th>
+                  </tr>
+                  ${serviceItems}
+                </table>
+              ` : '<p>No services selected</p>'}
+            </div>
+            
+            <div class="total">
+              Total: $${totalCost.toLocaleString()}
+            </div>
+          </div>
+          <div class="footer">
+            <p>This is an automated email sent from your pricing inquiry form.</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+  };
+
+  // Send data to a serverless function or API route that will handle the email sending
+  const sendFormData = async (submissionData: any) => {
+    try {
+      // Here we'll create a server-side API route to handle the MailerLite integration
+      const response = await fetch("/api/submit-inquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(submissionData),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to submit inquiry");
+      }
+      
+      return true;
+    } catch (error) {
+      console.error("Form submission error:", error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
     const requiredFields: (keyof FormData)[] = [
       "name",
@@ -84,12 +204,20 @@ const PricingInquiryForm: React.FC = () => {
     const missingFields = requiredFields.filter((field) => !formData[field]);
 
     if (missingFields.length > 0) {
-      alert(`Please fill in the following fields: ${missingFields.join(", ")}`);
+      setIsSubmitting(false);
+      setSubmitStatus({
+        success: false,
+        message: `Please fill in the following fields: ${missingFields.join(", ")}`
+      });
       return;
     }
 
     if (!formData.privacyPolicy) {
-      alert("Please acknowledge the privacy policy");
+      setIsSubmitting(false);
+      setSubmitStatus({
+        success: false,
+        message: "Please acknowledge the privacy policy"
+      });
       return;
     }
 
@@ -113,6 +241,35 @@ const PricingInquiryForm: React.FC = () => {
     };
 
     console.log("Form Submitted", submissionData);
+    
+    // Send data to our API route
+    const emailSent = await sendFormData(submissionData);
+    
+    setIsSubmitting(false);
+    if (emailSent) {
+      setSubmitStatus({
+        success: true,
+        message: "Your inquiry has been submitted successfully! We'll be in touch soon."
+      });
+      // Reset form after successful submission
+      setSelectedTechnologies([]);
+      setSelectedServices([]);
+      setFormData({
+        inquiry: "",
+        name: "",
+        email: "",
+        company: "",
+        jobTitle: "",
+        phone: "",
+        country: "",
+        privacyPolicy: false,
+      });
+    } else {
+      setSubmitStatus({
+        success: false,
+        message: "Something went wrong submitting your inquiry. Please try again or contact us directly."
+      });
+    }
   };
 
   return (
@@ -126,6 +283,14 @@ const PricingInquiryForm: React.FC = () => {
             Accelerate Agility and Innovation
           </p>
         </div>
+
+        {submitStatus && (
+          <div 
+            className={`p-4 ${submitStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
+          >
+            {submitStatus.message}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
           <TechnologiesSection
@@ -142,10 +307,19 @@ const PricingInquiryForm: React.FC = () => {
           />
           <button
             type="submit"
-            className="w-full bg-[#4A7EFF] text-white py-3 rounded-md hover:bg-[#3A6EDF] transition-all"
+            disabled={isSubmitting}
+            className={`w-full bg-[#4A7EFF] text-white py-3 rounded-md transition-all ${
+              isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-[#3A6EDF]'
+            }`}
           >
-            Submit Request
+            {isSubmitting ? "Submitting..." : "Submit Request"}
           </button>
+          
+          {calculateTotalCost() > 0 && (
+            <div className="text-right font-semibold text-lg">
+              Estimated Cost: ${calculateTotalCost().toLocaleString()}
+            </div>
+          )}
         </form>
       </div>
     </div>
