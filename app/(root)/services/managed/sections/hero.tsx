@@ -12,15 +12,13 @@ const NixSoftHero = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 h-full flex flex-col justify-center">
         <h1 className="text-white text-4xl md:text-5xl font-bold mb-2">
-          Comprehensive
+          24/7 IT Support & Monitoring
           <br />
-          Managed IT Services
-          <br />
-          <span className="text-cyan-400">For Your Business</span>
+          <span className="text-cyan-400">Proactive IT Management</span>
         </h1>
 
         <p className="text-white text-lg md:text-xl max-w-xl mb-8">
-          From 24/7 IT support to database management, system security to complete IT outsourcing - we provide end-to-end managed services to keep your business running smoothly and securely.
+          With our combination of proactive monitoring, efficient communication, and skilled support teams, Nixsoft Technologies ensures that your business receives continuous IT support and management, keeping your systems running smoothly around the clock.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
