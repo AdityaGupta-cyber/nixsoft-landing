@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Shield, Search, Target, AlertTriangle, Users, FileCheck, Wrench, RefreshCw, ChevronRight, ArrowUp } from "lucide-react";
+import { Shield, Search, Target, AlertTriangle,  RefreshCw, ChevronRight, ArrowUp } from "lucide-react";
 
 // Define interfaces for your props
 interface ServiceItem {
