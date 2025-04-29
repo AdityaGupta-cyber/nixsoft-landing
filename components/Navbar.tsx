@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   HoveredLink,
   Menu,
@@ -40,6 +40,14 @@ function NavbarUtil({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
+
+  
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setMobileSubmenu(null);
+  }, []);
+
+ 
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
@@ -302,6 +310,7 @@ function NavbarUtil({ className }: { className?: string }) {
                 <Link
                   href="/services/cloud"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   <div className="flex items-center">
                     <Cloud className="h-4 w-4 mr-2 text-blue-600" />
@@ -311,6 +320,7 @@ function NavbarUtil({ className }: { className?: string }) {
                 <Link
                   href="/services/devops"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   <div className="flex items-center">
                     <Settings className="h-4 w-4 mr-2 text-blue-600" />
@@ -320,6 +330,7 @@ function NavbarUtil({ className }: { className?: string }) {
                 <Link
                   href="/services/security"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   <div className="flex items-center">
                     <Shield className="h-4 w-4 mr-2 text-blue-600" />
@@ -327,8 +338,9 @@ function NavbarUtil({ className }: { className?: string }) {
                   </div>
                 </Link>
                 <Link
-                  href="/services/infrastructure"
+                  href="/services/it-management"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   <div className="flex items-center">
                     <Server className="h-4 w-4 mr-2 text-blue-600" />
@@ -338,6 +350,7 @@ function NavbarUtil({ className }: { className?: string }) {
                 <Link
                   href="/services/managed"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   <div className="flex items-center">
                     <Monitor className="h-4 w-4 mr-2 text-blue-600" />
@@ -347,6 +360,7 @@ function NavbarUtil({ className }: { className?: string }) {
                 <Link
                   href="/services/ai"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   <div className="flex items-center">
                     <Brain className="h-4 w-4 mr-2 text-blue-600" />
@@ -356,6 +370,7 @@ function NavbarUtil({ className }: { className?: string }) {
                 <Link
                   href="/services/software"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   <div className="flex items-center">
                     <Code className="h-4 w-4 mr-2 text-blue-600" />
@@ -365,6 +380,7 @@ function NavbarUtil({ className }: { className?: string }) {
                 <Link
                   href="/services/consulting"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   <div className="flex items-center">
                     <Briefcase className="h-4 w-4 mr-2 text-blue-600" />
@@ -393,18 +409,21 @@ function NavbarUtil({ className }: { className?: string }) {
                 <Link
                   href="/solutions/observability"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   AI-Driven Observability & IT Infrastructure Monitoring
                 </Link>
                 <Link
                   href="/solutions/valguard"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   Nix-ValGuard - Continuous Linux VA & Compliance Monitoring
                 </Link>
                 <Link
                   href="/solutions/aiops"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   AI-Powered IT Operations (AIOps)
                 </Link>
@@ -430,12 +449,14 @@ function NavbarUtil({ className }: { className?: string }) {
                 <Link
                   href="/tech/cloud"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   Cloud Solutions
                 </Link>
                 <Link
                   href="/tech/devops"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   DevOps
                 </Link>
@@ -461,12 +482,14 @@ function NavbarUtil({ className }: { className?: string }) {
                 <Link
                   href="/about-us"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   Our Company
                 </Link>
                 <Link
                   href="/careers"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   Careers
                 </Link>
@@ -492,24 +515,28 @@ function NavbarUtil({ className }: { className?: string }) {
                 <Link
                   href="/insights/blog"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   Blog
                 </Link>
                 <Link
                   href="/insights/case-studies"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   Case Studies
                 </Link>
                 <Link
                   href="/insights/whitepapers"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   Whitepapers
                 </Link>
                 <Link
                   href="/insights/webinars"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
+                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
                   Webinars
                 </Link>
@@ -521,7 +548,10 @@ function NavbarUtil({ className }: { className?: string }) {
               <Button
                 variant="default"
                 className="w-full bg-[#1E90FF] text-white hover:bg-blue-600 rounded-md"
-                onClick={() => (window.location.href = "/pricing")}
+                onClick={() => {
+                  setMobileMenuOpen(false); // Close menu on click
+                  window.location.href = "/pricing";
+                }}
               >
                 Get Pricing
               </Button>
