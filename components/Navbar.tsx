@@ -195,7 +195,7 @@ function NavbarUtil({ className }: { className?: string }) {
                         Digital Transformation Consulting
                       </p>
                       <HoveredLink
-                        href="/services/consulting"
+                        href="/services/it-consulting"
                         className="text-sm text-blue-600"
                       >
                         Read More →
@@ -378,7 +378,7 @@ function NavbarUtil({ className }: { className?: string }) {
                   </div>
                 </Link>
                 <Link
-                  href="/services/consulting"
+                  href="/services/it-consulting"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
                   onClick={() => setMobileMenuOpen(false)} // Close menu on click
                 >
