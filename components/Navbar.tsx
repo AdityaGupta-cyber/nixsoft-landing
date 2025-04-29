@@ -171,7 +171,7 @@ function NavbarUtil({ className }: { className?: string }) {
                         Custom Application Development
                       </p>
                       <HoveredLink
-                        href="/services/development"
+                        href="/services/software"
                         className="text-sm text-blue-600"
                       >
                         Read More →
@@ -354,7 +354,7 @@ function NavbarUtil({ className }: { className?: string }) {
                   </div>
                 </Link>
                 <Link
-                  href="/services/development"
+                  href="/services/software"
                   className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
                 >
                   <div className="flex items-center">
