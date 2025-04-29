@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { aboutContent } from "@/lib/data";
 
 const App = () => {
@@ -56,7 +57,7 @@ const App = () => {
     };
 
     animateCounts();
-  }, []);
+  }, [targets.years, targets.projects, targets.developers]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -149,13 +150,15 @@ const App = () => {
               viewport={{ once: true }}
               className="lg:w-1/2"
             >
-              {/* Fixed image with proper dimensions, no background */}
-              <img
-                src="/office.svg"
-                alt="Office Interior"
-                className="w-full object-cover rounded-lg shadow-md"
-                style={{ height: "400px", width: "512px", maxWidth: "100%" }}
-              />
+              <div className="relative w-full" style={{ height: "400px", width: "512px", maxWidth: "100%" }}>
+                <Image
+                  src="/office.svg"
+                  alt="Office Interior"
+                  fill
+                  className="object-cover rounded-lg shadow-md"
+                  priority
+                />
+              </div>
             </motion.div>
           </div>
         </div>
