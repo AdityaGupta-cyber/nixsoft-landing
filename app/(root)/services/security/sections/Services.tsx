@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
+import { Shield, Search, Target, AlertTriangle,  RefreshCw, ChevronRight, ArrowUp } from "lucide-react";
 
 // Define interfaces for your props
 interface ServiceItem {
   name: string;
+  description?: string;
 }
 
 interface ServiceSectionProps {
@@ -12,6 +14,7 @@ interface ServiceSectionProps {
   services: ServiceItem[] | string[];
   imagePosition?: "right" | "left";
   imageSrc?: string;
+  icon?: React.ReactNode;
   index?: number;
 }
 
@@ -21,6 +24,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   services,
   imagePosition = "right",
   imageSrc,
+  icon,
 }) => {
   const isImageRight = imagePosition === "right";
 
@@ -34,10 +38,13 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
         >
           {/* Content Section */}
           <div className="w-full lg:w-1/2 px-6">
-            <h2 className="text-3xl font-bold text-indigo-900 mb-4">{title}</h2>
+            <div className="flex items-center mb-4">
+              {icon && <div className="text-indigo-600 mr-3">{icon}</div>}
+              <h2 className="text-3xl font-bold text-indigo-900">{title}</h2>
+            </div>
             <p className="text-gray-700 mb-6">{description}</p>
 
-            <div className="space-y-2 mb-8">
+            <div className="space-y-3 mb-8">
               {services.map((service, index) => (
                 <div key={index} className="flex items-start">
                   <span className="text-indigo-500 mr-2">—</span>
@@ -53,18 +60,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
               onClick={() => (window.location.href = "/learn-more")}
             >
               Learn More
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 ml-1"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <ChevronRight className="h-5 w-5 ml-1" />
             </button>
           </div>
 
@@ -73,7 +69,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
             <img
               src={imageSrc || "/api/placeholder/600/400"}
               alt="Service illustration"
-              className="rounded-lg shadow-md w-full"
+              className="rounded-lg shadow-md w-full object-cover h-64"
             />
           </div>
         </div>
@@ -88,79 +84,87 @@ interface ServiceData {
   services: string[];
   imagePosition: "right" | "left";
   imageSrc: string;
+  icon: React.ReactNode;
 }
 
 const ServicesPage: React.FC = () => {
-  // Data for all service sections
+  // Data for all service sections based on the new content
   const servicesData: ServiceData[] = [
     {
-      title: "Vulnerability Assessments & Penetration Testing",
+      title: "Vulnerability Assessment",
       description:
-        "Identify and address security vulnerabilities before they can be exploited. Our comprehensive security testing services help protect your systems, applications, and networks from potential threats.",
+        "A vulnerability assessment helps your organization identify potential weaknesses in its IT infrastructure before cybercriminals can exploit them. Nixsoft Technologies provides comprehensive vulnerability assessment services to protect your systems.",
       services: [
-        "External & Internal Penetration Testing",
-        "Web Application Security Assessment",
-        "API Security Testing",
-        "Cloud Infrastructure Security Review",
-        "Social Engineering Simulations",
-        "Vulnerability Scanning & Remediation",
+        "Network Scanning & Assessment of vulnerabilities and misconfigurations",
+        "Risk Prioritization based on severity, exploitability, and business impact",
+        "Comprehensive Reports with clear remediation recommendations",
+        "Continuous Monitoring for newly emerging threats",
       ],
       imagePosition: "right",
-      imageSrc:
-        "https://imgs.search.brave.com/I4JkG1BcFO6xGFd0bFPACM_WtiwFiWF4cDvL9ZwoXOs/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9jbG91ZC13aXRo/LW1vZGVsLWNvbXB1/dGVyLXdpdGgtd29y/ZC1tYXJrZXQtaXRf/OTAxMDAzLTQ2OTMu/anBnP3NlbXQ9YWlz/X2h5YnJpZA",
+      imageSrc: "https://images.unsplash.com/photo-1610986603166-f78428624e76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      icon: <Search size={28} />,
     },
     {
-      title: "SIEM & Log Management",
+      title: "Penetration Testing (Pen Testing)",
       description:
-        "Gain comprehensive visibility into your security posture with our SIEM and log management solutions. We help you collect, analyze, and respond to security events across your entire infrastructure.",
+        "Penetration testing simulates an actual cyberattack to identify how vulnerable your organization's systems and networks are to exploitation. Our expert team conducts comprehensive penetration tests to uncover security weaknesses.",
       services: [
-        "Splunk Implementation & Configuration",
-        "ArcSight Deployment & Management",
-        "QRadar Integration & Customization",
-        "Log Collection & Aggregation",
-        "Security Event Correlation & Analysis",
-        "Custom Dashboard & Alert Creation",
+        "Scoping & Planning based on your specific goals and assets",
+        "External & Internal Penetration Testing of systems and networks",
+        "Social Engineering simulations to test human security awareness",
+        "Exploit Vulnerabilities to demonstrate real attack impacts",
+        "Reporting & Recommendations with actionable defense improvements",
+        "Follow-up & Retesting after remediation implementation",
       ],
       imagePosition: "left",
-      imageSrc:
-        "https://plus.unsplash.com/premium_photo-1677448831822-4251f31b9fd5?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      imageSrc: "https://images.unsplash.com/photo-1563206767-5b18f218e8de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+      icon: <Target size={28} />,
     },
     {
-      title: "Security Policy & Compliance Audits",
+      title: "Comprehensive Cybersecurity Strategy",
       description:
-        "Ensure your organization meets industry regulations and security standards with our comprehensive compliance audit services. We help you identify gaps and implement necessary controls to achieve and maintain compliance.",
+        "Beyond testing, we help organizations build and implement comprehensive cybersecurity strategies that address all aspects of security, from human factors to technical controls and regulatory compliance.",
       services: [
-        "PCI DSS Compliance Assessment",
-        "HIPAA Security Evaluation",
-        "SOC 2 Readiness & Gap Analysis",
-        "ISO 27001 Compliance Preparation",
-        "GDPR & CCPA Privacy Compliance",
-        "Security Policy Development & Review",
+        "Security Awareness Training for staff and leadership",
+        "Incident Response Planning and preparation",
+        "Compliance and Regulatory Support for GDPR, HIPAA, PCI-DSS",
+        "Security Tool Recommendations tailored to your needs",
       ],
       imagePosition: "right",
-      imageSrc:
-        "https://spacelift.io/_next/image?url=https%3A%2F%2Fspaceliftio.wpcomstaging.com%2Fwp-content%2Fuploads%2F2023%2F04%2F193.terraform-infrastructure-as-code.png&w=2048&q=100",
+      imageSrc: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      icon: <AlertTriangle size={28} />,
     },
     {
-      title: "Endpoint & Network Security",
+      title: "Proactive Measures & Continuous Improvement",
       description:
-        "Protect your organization's endpoints and network infrastructure with our comprehensive security solutions. We help you implement and manage robust defenses against evolving cyber threats.",
+        "Cybersecurity requires ongoing vigilance and improvement. Our continuous security services help you stay ahead of threats through proactive measures, routine audits, and continuous improvement practices.",
       services: [
-        "Next-Gen Antivirus Deployment",
-        "Endpoint Detection & Response (EDR)",
-        "Network Firewall Configuration",
-        "Zero Trust Architecture Implementation",
-        "Data Loss Prevention (DLP)",
-        "Secure Access Service Edge (SASE)",
+        "Patch Management to fix known vulnerabilities",
+        "Red Teaming and Threat Simulation beyond standard pen testing",
+        "Security Audits to evaluate effectiveness of security measures",
       ],
       imagePosition: "left",
-      imageSrc:
-        "https://www.mgt-commerce.com/astatic/assets/images/article/2023/155/hero.svg?v=1.0.4",
+      imageSrc: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      icon: <RefreshCw size={28} />,
     },
   ];
 
+  const introText = "Nixsoft Technologies can assist its clients with cybersecurity solutions like Vulnerability Assessments and Penetration Testing through several strategic approaches. By offering a combination of vulnerability assessments and penetration testing along with continuous support and education, Nixsoft Technologies can help its clients build a strong defense against cyber threats, reduce risk, and maintain ongoing security vigilance.";
+
   return (
     <div className="flex flex-col w-full">
+      {/* Introduction Section */}
+      <div className="w-full py-12 bg-indigo-50">
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-center mb-6">
+            <Shield size={36} className="text-indigo-600 mr-3" />
+            <h1 className="text-4xl font-bold text-indigo-900">Cybersecurity Solutions</h1>
+          </div>
+          <p className="text-gray-700 text-center max-w-4xl mx-auto">{introText}</p>
+        </div>
+      </div>
+
+      {/* Service Sections */}
       {servicesData.map((service, index) => (
         <ServiceSection
           key={index}
@@ -169,6 +173,7 @@ const ServicesPage: React.FC = () => {
           services={service.services}
           imagePosition={service.imagePosition}
           imageSrc={service.imageSrc}
+          icon={service.icon}
           index={index}
         />
       ))}
@@ -180,20 +185,7 @@ const ServicesPage: React.FC = () => {
           className="bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition-colors"
           aria-label="Back to top"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            />
-          </svg>
+          <ArrowUp size={24} />
         </button>
       </div>
     </div>

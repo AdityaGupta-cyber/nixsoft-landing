@@ -9,10 +9,11 @@ const Carousel = ({ interval = 3000 }) => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      nextSlide();
+      setCurrentIndex((prev) => (prev + 1) % items.length);
     }, interval);
+
     return () => clearInterval(timer);
-  }, [currentIndex]);
+  }, [items.length, interval]);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
@@ -76,15 +77,15 @@ export default Carousel;
 
 export const items = [
   {
-    text: "Want to try out MongoDB on your laptop? Execute a single command and you have a lightweight, self-contained sandbox; another command removes all traces when you’re done.",
+    text: "Want to try out MongoDB on your laptop? Execute a single command and you have a lightweight, self-contained sandbox; another command removes all traces when you're done.",
     author: "Global Sign",
   },
   {
-    text: "Want to try out MongoDB on your laptop? Execute a single command and you have a lightweight, self-contained sandbox; another command removes all traces when you’re done.",
+    text: "Want to try out MongoDB on your laptop? Execute a single command and you have a lightweight, self-contained sandbox; another command removes all traces when you're done.",
     author: "Global Sign",
   },
   {
-    text: "Want to try out MongoDB on your laptop? Execute a single command and you have a lightweight, self-contained sandbox; another command removes all traces when you’re done.",
+    text: "Want to try out MongoDB on your laptop? Execute a single command and you have a lightweight, self-contained sandbox; another command removes all traces when you're done.",
     author: "Global Sign",
   },
 ];
