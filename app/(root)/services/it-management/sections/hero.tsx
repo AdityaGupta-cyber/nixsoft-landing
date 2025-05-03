@@ -11,7 +11,7 @@ const heroContent = {
     {
       text: "Our Services",
       primary: true,
-      href: "#services"
+      href: "/services"
     },
     {
       text: "Get a Quote",
