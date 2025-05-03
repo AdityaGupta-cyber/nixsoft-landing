@@ -37,6 +37,10 @@ export const HoverEffect = ({
           key={`${idx}-${item?.link || ''}`}
           className={`relative group block p-2 h-full w-full ${
             idx > 2 ? "hidden md:block" : ""
+          } ${
+            items.length % 2 !== 0 && idx === items.length - 1
+              ? 'md:col-span-2 lg:col-span-1'
+              : ''
           }`}
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -58,15 +62,17 @@ export const HoverEffect = ({
               />
             )}
           </AnimatePresence>
-          <Card icon={item.icon} className="space-y-1">
-            <CardTitle>{item.title || item.name}</CardTitle>
-            <CardDescription>{item.description}</CardDescription>
-            {item.link && (
-              <CardLink link={item.link} className="hover:text-underline">
-                Learn More <ArrowForwardIcon />
-              </CardLink>
-            )}
-          </Card>
+          <div className="flex justify-center w-full">
+            <Card icon={item.icon} className="space-y-1 w-full">
+              <CardTitle>{item.title || item.name}</CardTitle>
+              <CardDescription>{item.description}</CardDescription>
+              {item.link && (
+                <CardLink link={item.link} className="hover:text-underline">
+                  Learn More <ArrowForwardIcon />
+                </CardLink>
+              )}
+            </Card>
+          </div>
         </div>
       ))}
     </div>

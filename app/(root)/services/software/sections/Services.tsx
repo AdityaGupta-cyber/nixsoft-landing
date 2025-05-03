@@ -12,6 +12,7 @@ import {
   ChevronRight, 
   ArrowUp 
 } from "lucide-react";
+import Image from "next/image";
 
 // Define interfaces for your props
 interface ServiceItem {
@@ -77,8 +78,8 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 
           {/* Image Section */}
           <div className="w-full lg:w-1/2 p-6">
-            <img
-              src={imageSrc}
+            <Image
+              src={imageSrc || "/api/placeholder/600/400"}
               alt="Service illustration"
               className="rounded-lg shadow-md w-full object-cover h-64"
             />
@@ -223,7 +224,7 @@ const ServicesPage: React.FC = () => {
       {/* Hero image section */}
       <div className="w-full py-8">
         <div className="container mx-auto px-6">
-          <img 
+          <Image 
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
             alt="Custom Application Development Team" 
             className="w-full h-96 object-cover rounded-xl shadow-lg"

@@ -13,7 +13,17 @@ export function Testimonials({ testimonials }: { testimonials: { name: string, t
       {testimonials.map((testimonial, idx) => (
         <div
           key={testimonial.name}
-          className="relative group block p-2 h-full w-full"
+          className={`relative group block p-2 h-full w-full flex justify-center ${
+            testimonials.length % 3 !== 0 && idx === testimonials.length - 1 && testimonials.length % 3 === 1
+              ? 'lg:col-span-3'
+              : testimonials.length % 3 === 2 && (idx === testimonials.length - 1 || idx === testimonials.length - 2)
+                ? 'lg:col-span-3 lg:w-1/2 lg:mx-auto'
+                : ''
+          } ${
+            testimonials.length % 2 !== 0 && idx === testimonials.length - 1
+              ? 'md:col-span-2 lg:col-span-1'
+              : ''
+          }`}
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
         >

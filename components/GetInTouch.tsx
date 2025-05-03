@@ -1,14 +1,13 @@
 "use client";
 import { Button } from "./ui/button";
-import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function GetInTouch() {
   return (
     <div className="w-full py-16 bg-white">
-      <div className="w-[80vw] mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2  md:gap-80 gap-20">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
           {/* Contact Form */}
-          <div className="space-y-8">
+          <div className="space-y-8 max-w-xl mx-auto md:mx-0 w-full">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 Get in Touch
@@ -20,7 +19,7 @@ export default function GetInTouch() {
             </div>
 
             <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <input
                   type="text"
                   placeholder="First Name"
@@ -49,23 +48,24 @@ export default function GetInTouch() {
           </div>
 
           {/* Contact Information */}
-          <div className="flex flex-col items-start justify-start space-y-6 w-full md:w-[60%]">
+          <div className="flex flex-col items-start justify-start space-y-6 max-w-xl mx-auto md:mx-0 w-full">
             <div>
               <h3 className="text-xl font-bold text-gray-900 mb-4">
                 Contact Information
               </h3>
               <div className="space-y-4">
                 <p className="flex items-center space-x-3 text-gray-600">
-                  <MapPin className="w-5 h-5" />
-                  <span>123 Business Avenue, Suite 100, CA 94107</span>
+                  <span>🌍</span>
+                  <span>804, 8th Floor, Ijmima Complex, 2, Malad West, Mumbai,
+                    Maharashtra 400064</span>
                 </p>
                 <p className="flex items-center space-x-3 text-gray-600">
-                  <Phone className="w-5 h-5" />
-                  <span>+1 (555) 123-4567</span>
+                  <span>📞</span>
+                  <span>+91 9769888498</span>
                 </p>
                 <p className="flex items-center space-x-3 text-gray-600">
-                  <Mail className="w-5 h-5" />
-                  <span>contact@nixsoft.com</span>
+                  <span>✉️</span>
+                  <span>sales@nixsoftech.in</span>
                 </p>
               </div>
             </div>

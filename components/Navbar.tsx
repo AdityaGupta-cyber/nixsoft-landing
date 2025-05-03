@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
@@ -62,7 +63,9 @@ function NavbarUtil({ className }: { className?: string }) {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <h1 className="text-2xl font-bold">nixsoft</h1>
+            <h1 className="text-2xl font-bold">
+            <Image src="/logo.png" alt="NixSoft Logo" width={120} height={32} className="h-8" />
+            </h1>
           </Link>
 
           {/* Desktop menu */}
