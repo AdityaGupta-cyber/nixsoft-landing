@@ -6,17 +6,17 @@ const resources = [
   {
     title: "The Future of Cloud Technology in 2025 and beyond.",
     image: "https://plus.unsplash.com/premium_photo-1712254285399-f5f181730830?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" ,
-    link: "/blog/cloud-tech-2024",
+    link: "/blog/1",
   },
   {
     title: "Best Practices in Modern Website Development",
     image: "https://plus.unsplash.com/premium_photo-1712254285399-f5f181730830?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/blog/web-dev-practices",
+    link: "/blog/2",
   },
   {
     title: "Implementing Artificial Intelligence in Database Operations",
     image: "https://plus.unsplash.com/premium_photo-1712254285399-f5f181730830?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/blog/ai-database",
+    link: "/blog/3",
   },
 ];
 
