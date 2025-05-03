@@ -215,7 +215,7 @@ const ServicesPage: React.FC = () => {
           description={service.description}
           icon={service.icon}
           bulletPoints={service.bulletPoints}
-          imagePosition={service.imagePosition}
+          imagePosition={service.imagePosition as "left" | "right"}
           imageSrc={service.imageSrc}
         />
       ))}
