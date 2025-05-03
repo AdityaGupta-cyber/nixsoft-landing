@@ -1,6 +1,7 @@
 // src/components/JobListings.tsx
 import React, { useState } from "react";
 import { jobListings } from "@/lib/data";
+import { Upload } from "lucide-react";
 
 export const JobListings: React.FC = () => {
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
