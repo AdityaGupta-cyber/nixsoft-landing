@@ -41,11 +41,6 @@ interface SubmissionData {
 const PricingInquiryForm: React.FC = () => {
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [submitStatus, setSubmitStatus] = useState<{
-    success: boolean;
-    message: string;
-  } | null>(null);
   const [formData, setFormData] = useState<FormData>({
     inquiry: "",
     name: "",
@@ -56,6 +51,8 @@ const PricingInquiryForm: React.FC = () => {
     country: "",
     privacyPolicy: false,
   });
+  const [submittedData, setSubmittedData] = useState<SubmissionData | null>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   const handleTechnologyToggle = (tech: string) => {
     setSelectedTechnologies((prev) =>
@@ -97,35 +94,59 @@ const PricingInquiryForm: React.FC = () => {
     return techCost + serviceCost;
   };
 
-  // Send data to a serverless function or API route that will handle the email sending
-  const sendFormData = async (submissionData: SubmissionData) => {
+  async function submitToMailerLite({ 
+    email,
+    name,
+    fields = {},
+    groupId
+  }: {
+    email: string;
+    name: string;
+    fields?: Record<string, any>;
+    groupId?: string;
+  }) {
+    const API_KEY = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiNzI2N2NlYTlmODM0NjVmNzNkMDQ1OGZmN2Q3MWI0MGQ2MjVjZjRkZDczNzFkMGUwOWNkMTJlYTZjMTBhZWZhYWVkZTU2NzkyYmM0ZDU0MTgiLCJpYXQiOjE3NDE2OTI2NzMuMzQyNzkzLCJuYmYiOjE3NDE2OTI2NzMuMzQyNzk2LCJleHAiOjQ4OTczNjYyNzMuMzM4NjUzLCJzdWIiOiIzNDgzODEiLCJzY29wZXMiOltdfQ.pbVrRlhf__6JuMtut659HFLpS853StC4rIzfWVPImrS9fggL_UnprzFVyGYyFB9ag4pCcZFH5cazGPVaC0eHQ06-NIZjDyLfrUH7sMsyW20V52KiMUD3nyjAqghoiHOHw5YMBSBGAjd4i26RReAUICzfUzEVQeUWQrvCIMivWNPFAgQ29EyYypbSbnttz22eF25JCsO2LDi2Z-WiEORjouYTXhbxkyif-h2SXGt4mFXvKDdf8i1pZT7Z59q1GttnIicjaYt1gojtDzwWVQ7wXBTDFkYLT6Kbj6SqfkAofrRFc68G-aPbDYh0Hawnw2KfNYro_8dY4zv5WgVIHhU6NupEOeyyF876oC0dcXfVJZPmefGyHGawJlFuW87sswZigByXb-LEG_XAdlZrl2lEM2ZbJbm45SEQfIK_cLGTB9V-1_EFqbBgVI09KzTuDLqBFzoWnV_GHVmt3Ysq5XdWic1KaqdtCbJAosY3qrldCYluZ-L3ikS68YPRup1a_lAiTkKoP_X7m3m99XH499OcMIbY95VSFBNgKhf-U3E21EUGGxH0_PoBtbimpeHu3G14-C966vNv6oKieXP-d9cRPwA__wvAGG0P54zSvyywCJBQHli4vqRJ7_RQFS1BQwqTTGucIhSqskbojrAwY60v6FV0jKe4oNQtAkEhXPPbJW4'; // Replace with your real API key
+  
+    const data = {
+      email,
+      name,
+      fields,         // optional extra fields like { phone: "12345" }
+      groups: groupId ? [groupId] : [], // optional group ID
+    };
+  
     try {
-      // Here we'll create a server-side API route to handle the MailerLite integration
-      const response = await fetch("/api/submit-inquiry", {
+      const response = await fetch("https://api.mailerlite.com/api/v2/subscribers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "X-MailerLite-ApiKey":API_KEY,
         },
-        body: JSON.stringify(submissionData),
+        body: JSON.stringify(data),
       });
-      
+  
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to submit inquiry");
+        const err = await response.json();
+        throw new Error(err.error.message || "MailerLite request failed");
       }
-      
-      return true;
-    } catch (error) {
-      console.error("Form submission error:", error);
-      return false;
+  
+      const result = await response.json();
+      return result; // contains added subscriber info
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("MailerLite error:", error.message);
+      } else {
+        console.error("MailerLite error:", error);
+      }
+      throw error;
     }
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  }
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
+    
+    // Reset validation error
+    setValidationError(null);
+    
+    // Form validation
     const requiredFields: (keyof FormData)[] = [
       "name",
       "email",
@@ -138,25 +159,25 @@ const PricingInquiryForm: React.FC = () => {
     const missingFields = requiredFields.filter((field) => !formData[field]);
 
     if (missingFields.length > 0) {
-      setIsSubmitting(false);
-      setSubmitStatus({
-        success: false,
-        message: `Please fill in the following fields: ${missingFields.join(", ")}`
-      });
+      setValidationError(`Please fill in the following fields: ${missingFields.join(", ")}`);
       return;
     }
 
     if (!formData.privacyPolicy) {
-      setIsSubmitting(false);
-      setSubmitStatus({
-        success: false,
-        message: "Please acknowledge the privacy policy"
-      });
+      setValidationError("Please acknowledge the privacy policy");
+      return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setValidationError("Please enter a valid email address");
       return;
     }
 
     const totalCost = calculateTotalCost();
 
+    // Just store the data in an object
     const submissionData = {
       ...formData,
       technologies: selectedTechnologies,
@@ -174,36 +195,9 @@ const PricingInquiryForm: React.FC = () => {
       },
     };
 
-    console.log("Form Submitted", submissionData);
-    
-    // Send data to our API route
-    const emailSent = await sendFormData(submissionData);
-    
-    setIsSubmitting(false);
-    if (emailSent) {
-      setSubmitStatus({
-        success: true,
-        message: "Your inquiry has been submitted successfully! We'll be in touch soon."
-      });
-      // Reset form after successful submission
-      setSelectedTechnologies([]);
-      setSelectedServices([]);
-      setFormData({
-        inquiry: "",
-        name: "",
-        email: "",
-        company: "",
-        jobTitle: "",
-        phone: "",
-        country: "",
-        privacyPolicy: false,
-      });
-    } else {
-      setSubmitStatus({
-        success: false,
-        message: "Something went wrong submitting your inquiry. Please try again or contact us directly."
-      });
-    }
+    // Store the submission data in state and log it
+    setSubmittedData(submissionData);
+    console.log("Form Data Stored:", submissionData);
   };
 
   return (
@@ -218,11 +212,15 @@ const PricingInquiryForm: React.FC = () => {
           </p>
         </div>
 
-        {submitStatus && (
-          <div 
-            className={`p-4 ${submitStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
-          >
-            {submitStatus.message}
+        {validationError && (
+          <div className="p-4 bg-red-100 text-red-800">
+            {validationError}
+          </div>
+        )}
+        
+        {submittedData && !validationError && (
+          <div className="p-4 bg-green-100 text-green-800">
+            Form data has been stored successfully!
           </div>
         )}
 
@@ -241,12 +239,9 @@ const PricingInquiryForm: React.FC = () => {
           />
           <button
             type="submit"
-            disabled={isSubmitting}
-            className={`w-full bg-[#4A7EFF] text-white py-3 rounded-md transition-all ${
-              isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-[#3A6EDF]'
-            }`}
+            className="w-full bg-[#4A7EFF] text-white py-3 rounded-md transition-all hover:bg-[#3A6EDF]"
           >
-            {isSubmitting ? "Submitting..." : "Submit Request"}
+            Submit Request
           </button>
           
           {calculateTotalCost() > 0 && (
