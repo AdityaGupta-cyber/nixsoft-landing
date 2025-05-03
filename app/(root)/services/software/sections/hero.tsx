@@ -22,7 +22,9 @@ const NixSoftHero = () => {
           scalable software solutions tailored specifically to their unique requirements and workflow.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
-          <button className="px-8 py-3 bg-blue-500 text-white font-medium rounded hover:bg-blue-600 transition-colors">
+          <button
+          onClick={() => (window.location.href = "/services")}
+          className="px-8 py-3 bg-blue-500 text-white font-medium rounded hover:bg-blue-600 transition-colors">
             Our Services
           </button>
           <button
