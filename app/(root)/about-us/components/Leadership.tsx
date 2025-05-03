@@ -2,24 +2,24 @@ import React from "react";
 import ProfileCard from "./ProfileCard";
 
 const LeadershipTeamSection = () => {
-  // Sample team data - this could come from props or an API
+  // Updated team member data with correct image paths and consistent URL keys
   const teamMembers = [
     {
       id: 1,
-      profilePicture: "wajid.jpg", //add profile picture from public folder
+      profilePicture: "/wajid.jpg", // Ensure image is in public folder
       name: "Wajid Shaikh",
       position: "Director",
-      bio: "Shaikh Abdul Wajid has More than 20 years of experience in IT, Management and Consulting.",
+      bio: "Shaikh Abdul Wajid has more than 20 years of experience in IT, Management and Consulting.",
       linkedinUrl: "https://linkedin.com",
       twitterUrl: "https://twitter.com",
       githubUrl: "https://github.com",
     },
     {
       id: 2,
-      profilePicture: "pravin.jpg", //add profile picture from public folder
+      profilePicture: "/pravin.jpg", // Ensure image is in public folder
       name: "Pravin Kore",
       position: "Director",
-      bio: "Pravin is strategic and result oriented professional offering 15 plus years of experience with Open Source Technologies.",
+      bio: "Pravin is a strategic and result-oriented professional offering 15+ years of experience with Open Source Technologies.",
       linkedinUrl: "https://linkedin.com",
       twitterUrl: "https://twitter.com",
       githubUrl: "https://github.com",
@@ -27,7 +27,7 @@ const LeadershipTeamSection = () => {
   ];
 
   return (
-    <div className="min-h-screen px-4 bg-gray-50">
+    <div className="min-h-screen px-4 bg-gray-50 py-12">
       <div className="max-w-6xl mx-auto">
         {/* Section Heading */}
         <h2 className="text-4xl font-bold text-center mb-12">

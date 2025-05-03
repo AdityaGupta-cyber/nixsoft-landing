@@ -34,7 +34,7 @@ export const HoverEffect = ({
     >
       {items.map((item, idx) => (
         <div
-          key={item?.link}
+          key={`${idx}-${item?.link || ''}`}
           className={`relative group block p-2 h-full w-full ${
             idx > 2 ? "hidden md:block" : ""
           }`}
