@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
@@ -63,7 +64,7 @@ function NavbarUtil({ className }: { className?: string }) {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <h1 className="text-2xl font-bold">
-              <img src="/logo.png" alt="Logo" className="h-10" />
+            <Image src="/logo.png" alt="NixSoft Logo" width={120} height={32} className="h-8" />
             </h1>
           </Link>
 

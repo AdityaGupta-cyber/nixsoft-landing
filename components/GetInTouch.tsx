@@ -1,6 +1,5 @@
 "use client";
 import { Button } from "./ui/button";
-import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function GetInTouch() {
   return (

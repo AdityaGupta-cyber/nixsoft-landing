@@ -1,7 +1,7 @@
 // src/components/JobListings.tsx
 import React, { useState } from "react";
-import { MapPin, Briefcase, Upload } from "lucide-react";
 import { jobListings } from "@/lib/data";
+import { Upload } from "lucide-react";
 
 export const JobListings: React.FC = () => {
   const [selectedJob, setSelectedJob] = useState<string | null>(null);
@@ -107,7 +107,7 @@ export const JobListings: React.FC = () => {
                 name="position"
                 required
                 value={formData.position}
-                onChange={handleInputChange}
+                onChange={(e) => setSelectedJob(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">Select a position</option>
