@@ -1,5 +1,6 @@
 import React from "react";
 import { Linkedin, Twitter, Github } from "lucide-react";
+import Image from 'next/image';
 
 interface ProfileCardProps {
   profilePicture?: string;
@@ -24,10 +25,12 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
     <div className="max-w-md rounded-[10px] overflow-hidden shadow-lg bg-white p-6">
       <div className="flex flex-col">
         {/* Profile Picture */}
-        <img
+        <Image
           src={profilePicture || "/api/placeholder/400/400"}
           alt={`${name}'s profile`}
-          className="w-full h-80 object-cover object-center rounded-lg mb-4"
+          width={200}
+          height={200}
+          className="w-full h-full object-cover rounded-lg mb-4"
         />
 
         {/* Name */}

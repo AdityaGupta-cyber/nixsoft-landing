@@ -1,26 +1,18 @@
 "use client";
 import React from "react";
 import { 
-  GitBranch, 
-  Code, 
-  Container, 
-  LineChart, 
-  ShieldCheck, 
-  Workflow, 
-  Award, 
-  Users,
-  Clock,
-  ChevronUp,
-  Lightbulb,
-  Laptop,
-  Map,
-  FileCode,
+  Laptop, 
+  Map, 
+  FileCode, 
   DollarSign,
+  ShieldCheck,
   Briefcase,
+  Sliders,
   Compass,
   PiggyBank,
-  Sliders
+  ChevronUp
 } from 'lucide-react';
+import Image from 'next/image';
 
 // Content configuration - easy to update when needed
 const servicesContent = [
@@ -87,7 +79,7 @@ const whyChooseContent = [
   {
     icon: <Sliders className="w-6 h-6 text-indigo-600" />,
     title: "Tailored Consulting",
-    description: "Customized strategies that align with your organization’s goals, structure, and market."
+    description: "Customized strategies that align with your organization's goals, structure, and market."
   },
   {
     icon: <ShieldCheck className="w-6 h-6 text-indigo-600" />,
@@ -107,12 +99,6 @@ const whyChooseContent = [
 ];
 
 // Define interfaces for your props
-interface ServiceItem {
-  name: string;
-  description?: string;
-  bulletPoints?: string[];
-}
-
 interface ServiceSectionProps {
   title: string;
   description: string;
@@ -181,11 +167,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 
           {/* Image Section */}
           <div className="w-full lg:w-1/2 p-6">
-            <img
-              src={imageSrc || "/api/placeholder/600/400"}
-              alt="Service illustration"
-              className="rounded-lg shadow-md w-full"
-            />
+            <Image src={imageSrc || "/api/placeholder/600/400"} alt={title} width={400} height={300} className="w-full h-full object-cover" />
           </div>
         </div>
       </div>
@@ -225,7 +207,7 @@ const ServicesPage: React.FC = () => {
   return (
     <div className="flex flex-col w-full">
       {/* Service Sections - mapped from the content array */}
-      {servicesContent.map((service, index) => (
+      {servicesContent.map((service) => (
         <ServiceSection
           key={service.id}
           title={service.title}

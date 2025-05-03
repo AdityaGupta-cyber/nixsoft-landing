@@ -1,30 +1,18 @@
 "use client";
 import React from "react";
 import { 
-  GitBranch, 
-  Code, 
-  Container, 
-  LineChart, 
-  ShieldCheck, 
-  Workflow, 
-  Award, 
-  Users,
+  Server, 
+  Cloud, 
+  Lock, 
+  Database,
+  ShieldCheck,
   Clock,
-  ChevronUp,
-  Lightbulb,
-  Laptop,
-  Map,
-  FileCode,
   DollarSign,
   Briefcase,
-  Compass,
-  PiggyBank,
   Sliders,
-  Server,
-  Cloud,
-  Lock,
-  Database
+  ChevronUp
 } from 'lucide-react';
+import Image from 'next/image';
 
 // Content configuration - easy to update when needed
 const servicesContent = [
@@ -111,12 +99,6 @@ const whyChooseContent = [
 ];
 
 // Define interfaces for your props
-interface ServiceItem {
-  name: string;
-  description?: string;
-  bulletPoints?: string[];
-}
-
 interface ServiceSectionProps {
   title: string;
   description: string;
@@ -185,11 +167,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 
           {/* Image Section */}
           <div className="w-full lg:w-1/2 p-6">
-            <img
-              src={imageSrc || "/api/placeholder/600/400"}
-              alt="Service illustration"
-              className="rounded-lg shadow-md w-full"
-            />
+            <Image src={imageSrc || "/api/placeholder/600/400"} alt={title} width={400} height={300} className="w-full h-full object-cover" />
           </div>
         </div>
       </div>
@@ -229,7 +207,7 @@ const ServicesPage: React.FC = () => {
   return (
     <div className="flex flex-col w-full">
       {/* Service Sections - mapped from the content array */}
-      {servicesContent.map((service, index) => (
+      {servicesContent.map((service) => (
         <ServiceSection
           key={service.id}
           title={service.title}
