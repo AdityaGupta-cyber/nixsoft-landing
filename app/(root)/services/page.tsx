@@ -177,13 +177,6 @@ const ServicesPage = () => {
   );
 };
 
-// CSS for navy blue colors
-const style = {
-  ":root": {
-    "--navy-100": "#E6EEF8",
-    "--navy-800": "#0A2647",
-    "--navy-900": "#051A35"
-  }
-};
+
 
 export default ServicesPage;
