@@ -5,57 +5,48 @@ import { ServicesSection, servicePrices } from "./sections/services";
 import { ContactFormSection } from "./sections/contact";
 
 interface FormData {
-  inquiry: string;
-  name: string;
   email: string;
+  name: string;
   company: string;
   jobTitle: string;
   phone: string;
   country: string;
   privacyPolicy: boolean;
-}
-
-interface PricingItem {
-  name: string;
-  price: number;
+  message: string;
 }
 
 interface SubmissionData {
-  inquiry: string;
-  name: string;
+  technologies: string[];
+  services: string[];
+  pricing: {
+    technologies: { name: string; price: number }[];
+    services: { name: string; price: number }[];
+    totalCost: number;
+  };
   email: string;
+  name: string;
   company: string;
   jobTitle: string;
   phone: string;
   country: string;
-  privacyPolicy: boolean;
-  technologies: string[];
-  services: string[];
-  pricing: {
-    technologies: PricingItem[];
-    services: PricingItem[];
-    totalCost: number;
-  };
+  message: string;
 }
 
 const PricingInquiryForm: React.FC = () => {
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [submitStatus, setSubmitStatus] = useState<{
-    success: boolean;
-    message: string;
-  } | null>(null);
   const [formData, setFormData] = useState<FormData>({
-    inquiry: "",
-    name: "",
     email: "",
+    name: "",
     company: "",
     jobTitle: "",
     phone: "",
     country: "",
     privacyPolicy: false,
+    message: ""
   });
+  const [submittedData, setSubmittedData] = useState<SubmissionData | null>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   const handleTechnologyToggle = (tech: string) => {
     setSelectedTechnologies((prev) =>
@@ -97,35 +88,13 @@ const PricingInquiryForm: React.FC = () => {
     return techCost + serviceCost;
   };
 
-  // Send data to a serverless function or API route that will handle the email sending
-  const sendFormData = async (submissionData: SubmissionData) => {
-    try {
-      // Here we'll create a server-side API route to handle the MailerLite integration
-      const response = await fetch("/api/submit-inquiry", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(submissionData),
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to submit inquiry");
-      }
-      
-      return true;
-    } catch (error) {
-      console.error("Form submission error:", error);
-      return false;
-    }
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
+    
+    // Reset validation error
+    setValidationError(null);
+    
+    // Form validation
     const requiredFields: (keyof FormData)[] = [
       "name",
       "email",
@@ -138,25 +107,25 @@ const PricingInquiryForm: React.FC = () => {
     const missingFields = requiredFields.filter((field) => !formData[field]);
 
     if (missingFields.length > 0) {
-      setIsSubmitting(false);
-      setSubmitStatus({
-        success: false,
-        message: `Please fill in the following fields: ${missingFields.join(", ")}`
-      });
+      setValidationError(`Please fill in the following fields: ${missingFields.join(", ")}`);
       return;
     }
 
     if (!formData.privacyPolicy) {
-      setIsSubmitting(false);
-      setSubmitStatus({
-        success: false,
-        message: "Please acknowledge the privacy policy"
-      });
+      setValidationError("Please acknowledge the privacy policy");
+      return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setValidationError("Please enter a valid email address");
       return;
     }
 
     const totalCost = calculateTotalCost();
 
+    // Just store the data in an object
     const submissionData = {
       ...formData,
       technologies: selectedTechnologies,
@@ -174,36 +143,9 @@ const PricingInquiryForm: React.FC = () => {
       },
     };
 
-    console.log("Form Submitted", submissionData);
-    
-    // Send data to our API route
-    const emailSent = await sendFormData(submissionData);
-    
-    setIsSubmitting(false);
-    if (emailSent) {
-      setSubmitStatus({
-        success: true,
-        message: "Your inquiry has been submitted successfully! We'll be in touch soon."
-      });
-      // Reset form after successful submission
-      setSelectedTechnologies([]);
-      setSelectedServices([]);
-      setFormData({
-        inquiry: "",
-        name: "",
-        email: "",
-        company: "",
-        jobTitle: "",
-        phone: "",
-        country: "",
-        privacyPolicy: false,
-      });
-    } else {
-      setSubmitStatus({
-        success: false,
-        message: "Something went wrong submitting your inquiry. Please try again or contact us directly."
-      });
-    }
+    // Store the submission data in state and log it
+    setSubmittedData(submissionData);
+    console.log("Form Data Stored:", submissionData);
   };
 
   return (
@@ -218,11 +160,15 @@ const PricingInquiryForm: React.FC = () => {
           </p>
         </div>
 
-        {submitStatus && (
-          <div 
-            className={`p-4 ${submitStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}
-          >
-            {submitStatus.message}
+        {validationError && (
+          <div className="p-4 bg-red-100 text-red-800">
+            {validationError}
+          </div>
+        )}
+        
+        {submittedData && !validationError && (
+          <div className="p-4 bg-green-100 text-green-800">
+            Form data has been stored successfully!
           </div>
         )}
 
@@ -236,17 +182,14 @@ const PricingInquiryForm: React.FC = () => {
             onServiceToggle={handleServiceToggle}
           />
           <ContactFormSection
-            formData={formData}
+            formData={{...formData, inquiry: ''}} 
             onInputChange={handleInputChange}
           />
           <button
             type="submit"
-            disabled={isSubmitting}
-            className={`w-full bg-[#4A7EFF] text-white py-3 rounded-md transition-all ${
-              isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-[#3A6EDF]'
-            }`}
+            className="w-full bg-[#4A7EFF] text-white py-3 rounded-md transition-all hover:bg-[#3A6EDF]"
           >
-            {isSubmitting ? "Submitting..." : "Submit Request"}
+            Submit Request
           </button>
           
           {calculateTotalCost() > 0 && (
