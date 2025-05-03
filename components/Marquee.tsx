@@ -144,7 +144,7 @@ export const solutions = [
     name: "Digital Transformation",
     description:
       "We help businesses transform their operations and processes to become more efficient and productive.",
-    link: "#",
+    link: "about-us",
     icon: (
       <MemoryIcon
         sx={{ color: "blue", fontSize: "2.5rem" }}
@@ -156,7 +156,7 @@ export const solutions = [
     name: "Process Automation",
     description:
       "We help businesses automate their operations and processes to become more efficient and productive.",
-    link: "#",
+    link: "about-us",
     icon: (
       <FlashOnIcon
         sx={{ color: "blue", fontSize: "2.5rem" }}
@@ -168,7 +168,7 @@ export const solutions = [
     name: "Enterprise Integration",
     description:
       "We help businesses integrate their operations and processes to become more efficient and productive.",
-    link: "#",
+    link: "about-us",
     icon: (
       <PeopleOutlineIcon
         sx={{ color: "blue", fontSize: "2.5rem" }}

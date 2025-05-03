@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 const slides = [
   {
@@ -25,6 +26,7 @@ const slides = [
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -52,7 +54,7 @@ export default function Hero() {
               <p className="text-blue-300 text-xl">
                 {slides[currentSlide].description}
               </p>
-              <Button className="bg-[#1E90FF] text-white px-8 py-6 text-lg hover:bg-blue-600">
+              <Button onClick={() => router.push('/about-us')} className="bg-[#1E90FF] text-white px-8 py-6 text-lg hover:bg-blue-600">
                 LEARN MORE
               </Button>
             </div>

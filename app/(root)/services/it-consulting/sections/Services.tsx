@@ -1,37 +1,118 @@
 "use client";
 import React from "react";
 import { 
-  
-  Search, 
-  PenTool, 
-  Server, 
+  Laptop, 
+  Map, 
   FileCode, 
-  RefreshCw, 
-  Rocket, 
-  TrendingUp, 
-  ChevronRight, 
-  ArrowUp 
-} from "lucide-react";
+  DollarSign,
+  ShieldCheck,
+  Briefcase,
+  Sliders,
+  Compass,
+  PiggyBank,
+  ChevronUp
+} from 'lucide-react';
+import Image from 'next/image';
+
+// Content configuration - easy to update when needed
+const servicesContent = [
+  {
+    id: "digital-transformation",
+    title: "Digital Transformation Consulting",
+    description: "Empower your organization with cutting-edge digital capabilities:",
+    icon: <Laptop className="w-8 h-8" />,
+    bulletPoints: [
+      "Comprehensive digital transformation strategies aligned with your business vision.",
+      "Process reengineering, automation, and technology enablement to boost agility and innovation.",
+      "Change management support to ensure smooth organizational transition and adoption."
+    ],
+    imagePosition: "right",
+    imageSrc: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "technology-roadmap",
+    title: "Technology Roadmap Planning",
+    description: "Build a clear, actionable path toward technology excellence:",
+    icon: <Map className="w-8 h-8" />,
+    bulletPoints: [
+      "Detailed assessment of current infrastructure, applications, and business goals.",
+      "Creation of phased, scalable technology roadmaps to support long-term growth.",
+      "Strategic alignment of IT investments with evolving business needs and market dynamics."
+    ],
+    imagePosition: "left",
+    imageSrc: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "it-governance",
+    title: "IT Governance & Compliance Advisory",
+    description: "Strengthen accountability and ensure compliance across IT operations:",
+    icon: <FileCode className="w-8 h-8" />,
+    bulletPoints: [
+      "Frameworks and policy design to improve IT governance and regulatory adherence.",
+      "Risk management strategies aligned with ISO, NIST, GDPR, and other global standards.",
+      "Audit support and continuous compliance monitoring for enterprise-grade assurance."
+    ],
+    imagePosition: "right",
+    imageSrc: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=1000&auto=format&fit=crop"
+  },
+  {
+    id: "cost-optimization",
+    title: "Cost Optimization & Vendor Management",
+    description: "Maximize ROI and streamline IT expenditures:",
+    icon: <DollarSign className="w-8 h-8" />,
+    bulletPoints: [
+      "Strategic cost analysis to identify savings opportunities across infrastructure and services.",
+      "Vendor evaluation, negotiation, and management to ensure value-driven partnerships.",
+      "Ongoing assessment of technology spend to eliminate waste and improve efficiency."
+    ],
+    imagePosition: "left",
+    imageSrc: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000&auto=format&fit=crop"
+  }
+];
+
+const whyChooseContent = [
+  {
+    icon: <Briefcase className="w-6 h-6 text-indigo-600" />,
+    title: "Strategic Insight",
+    description: "Deep domain knowledge combined with business-oriented thinking to guide IT decisions."
+  },
+  {
+    icon: <Sliders className="w-6 h-6 text-indigo-600" />,
+    title: "Tailored Consulting",
+    description: "Customized strategies that align with your organization's goals, structure, and market."
+  },
+  {
+    icon: <ShieldCheck className="w-6 h-6 text-indigo-600" />,
+    title: "Proven Frameworks",
+    description: "Best-practice approaches rooted in global standards and real-world success."
+  },
+  {
+    icon: <Compass className="w-6 h-6 text-indigo-600" />,
+    title: "End-to-End Guidance",
+    description: "From advisory to execution, we walk with you throughout your transformation journey."
+  },
+  {
+    icon: <PiggyBank className="w-6 h-6 text-indigo-600" />,
+    title: "Cost-Efficient Outcomes",
+    description: "Results-driven consulting focused on long-term value, savings, and operational excellence."
+  }
+];
 
 // Define interfaces for your props
-interface ServiceItem {
-  name: string;
-  icon: React.ReactNode;
-}
-
 interface ServiceSectionProps {
   title: string;
   description: string;
-  services: ServiceItem[];
+  icon: React.ReactNode;
+  bulletPoints?: string[];
   imagePosition?: "right" | "left";
   imageSrc?: string;
-  index?: number;
 }
 
 const ServiceSection: React.FC<ServiceSectionProps> = ({
   title,
   description,
-  services,
+  icon,
+  bulletPoints,
   imagePosition = "right",
   imageSrc,
 }) => {
@@ -47,21 +128,26 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
         >
           {/* Content Section */}
           <div className="w-full lg:w-1/2 px-6">
-            <h2 className="text-3xl font-bold text-indigo-900 mb-4">{title}</h2>
-            <p className="text-gray-700 mb-6">{description}</p>
-
-            <div className="space-y-4 mb-8">
-              {services.map((service, index) => (
-                <div key={index} className="flex items-start">
-                  <div className="text-indigo-500 mr-3 mt-1">{service.icon}</div>
-                  <span className="text-gray-800">{service.name}</span>
-                </div>
-              ))}
+            <div className="flex items-center mb-4">
+              <span className="text-3xl text-indigo-500 mr-3">{icon}</span>
+              <h2 className="text-3xl font-bold text-indigo-900">{title}</h2>
             </div>
+            <p className="text-gray-700 mb-6 font-semibold">{description}</p>
+
+            {bulletPoints && bulletPoints.length > 0 && (
+              <ul className="space-y-2 mb-8">
+                {bulletPoints.map((point, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="text-indigo-500 mr-2">•</span>
+                    <span className="text-gray-700">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
 
             <button
               className="text-blue-500 font-medium flex items-center hover:text-blue-700 transition-colors"
-              onClick={() => (window.location.href = "/learn-more")}
+              onClick={() => (window.location.href = "/about-us")}
             >
               Learn More
               <svg
@@ -81,11 +167,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 
           {/* Image Section */}
           <div className="w-full lg:w-1/2 p-6">
-            <img
-              src={imageSrc || "/api/placeholder/600/400"}
-              alt="Service illustration"
-              className="rounded-lg shadow-md w-full object-cover h-80"
-            />
+            <Image src={imageSrc || "/api/placeholder/600/400"} alt={title} width={400} height={300} className="w-full h-full object-cover" />
           </div>
         </div>
       </div>
@@ -93,166 +175,52 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
   );
 };
 
-const DigitalTransformationPage: React.FC = () => {
-  // Data for all service sections with the digital transformation content
-  const servicesData = [
-    {
-      title: "Assessment & Strategy Development",
-      description:
-        "We conduct a comprehensive analysis of your organization's current technology infrastructure, processes, and business models to develop a strategic roadmap aligned with your long-term goals and vision.",
-      services: [
-        { name: "Current State Assessment", icon: <Search size={20} /> },
-        { name: "Technology Roadmap Development", icon: <Rocket size={20} /> },
-        { name: "Change Management Planning", icon: <ChevronRight size={20} /> },
-        { name: "Digital Maturity Evaluation", icon: <TrendingUp size={20} /> },
-        { name: "ROI Analysis & Business Case Development", icon: <ArrowUp size={20} /> },
-        { name: "Competitive Technology Benchmarking", icon: <PenTool size={20} /> }
-      ],
-      imagePosition: "right" as const,
-      imageSrc: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    },
-    {
-      title: "Process Optimization & Automation",
-      description:
-        "We identify inefficiencies in your business processes and redesign them using digital tools to increase efficiency and reduce costs. Our automation expertise helps streamline operations and eliminate manual tasks.",
-      services: [
-        { name: "Process Reengineering & Workflow Optimization", icon: <PenTool size={20} /> },
-        { name: "Robotic Process Automation (RPA)", icon: <PenTool size={20} /> },
-        { name: "AI-Powered Task Automation", icon: <Server size={20} /> },
-        { name: "Legacy System Modernization", icon: <RefreshCw size={20} /> },
-        { name: "Process Documentation & Training", icon: <FileCode size={20} /> },
-        { name: "Digital Process Monitoring & Analytics", icon: <PenTool size={20} /> }
-      ],
-      imagePosition: "left" as const,
-      imageSrc: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    },
-    {
-      title: "Technology Implementation",
-      description:
-        "We help businesses move to modern infrastructure solutions for flexibility, scalability, and cost-efficiency. Our experts integrate disparate systems into unified platforms while ensuring robust cybersecurity measures.",
-      services: [
-        { name: "Cloud Migration & Optimization", icon: <Rocket size={20} /> },
-        { name: "System Integration Services", icon: <Search size={20} /> },
-        { name: "Cybersecurity Framework Implementation", icon: <PenTool size={20} /> },
-        { name: "SaaS & Enterprise Platform Selection", icon: <Server size={20} /> },
-        { name: "IoT & Edge Computing Solutions", icon: <PenTool size={20} /> },
-        { name: "Secure API Development & Management", icon: <PenTool size={20} /> }
-      ],
-      imagePosition: "right" as const,
-      imageSrc: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2034&q=80",
-    },
-    {
-      title: "Data Strategy & Analytics",
-      description:
-        "We establish comprehensive data governance policies and frameworks to manage data across your organization, enabling advanced analytics, AI, and machine learning to drive insights and inform decision-making.",
-      services: [
-        { name: "Data Governance Framework Development", icon: <PenTool size={20} /> },
-        { name: "Advanced Analytics Implementation", icon: <TrendingUp size={20} /> },
-        { name: "Business Intelligence Solutions", icon: <ArrowUp size={20} /> },
-        { name: "Data Warehouse & Lake Architecture", icon: <Server size={20} /> },
-        { name: "Predictive Analytics & AI Integration", icon: <PenTool size={20} /> },
-        { name: "Real-time Data Processing Solutions", icon: <RefreshCw size={20} /> }
-      ],
-      imagePosition: "left" as const,
-      imageSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    },
-    {
-      title: "DevOps Transformation",
-      description:
-        "We implement DevOps practices to improve collaboration between development and operations teams, enhancing software delivery processes and reducing time to market for new features or services.",
-      services: [
-        { name: "CI/CD Pipeline Implementation", icon: <RefreshCw size={20} /> },
-        { name: "Infrastructure as Code Adoption", icon: <FileCode size={20} /> },
-        { name: "Microservices Architecture Design", icon: <PenTool size={20} /> },
-        { name: "Container Orchestration (Kubernetes, Docker)", icon: <Search size={20} /> },
-        { name: "DevSecOps Integration", icon: <PenTool size={20} /> },
-        { name: "Automated Testing Frameworks", icon: <PenTool size={20} /> }
-      ],
-      imagePosition: "right" as const,
-      imageSrc: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    },
-    {
-      title: "Measurement & Continuous Improvement",
-      description:
-        "We establish key performance indicators to measure the success of digital initiatives and foster a culture of continuous learning and improvement by refining strategies and processes based on performance data.",
-      services: [
-        { name: "KPI Framework Development", icon: <TrendingUp size={20} /> },
-        { name: "Digital Transformation Success Metrics", icon: <PenTool size={20} /> },
-        { name: "Performance Monitoring Systems", icon: <ArrowUp size={20} /> },
-        { name: "Continuous Improvement Programs", icon: <RefreshCw size={20} /> },
-        { name: "Technology Value Stream Mapping", icon: <Search size={20} /> },
-        { name: "Digital Innovation Workshops", icon: <ChevronRight size={20} /> }
-      ],
-      imagePosition: "left" as const,
-      imageSrc: "https://images.unsplash.com/photo-1560264280-88b68371db39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    }
-  ];
-
+const WhyChooseSection: React.FC = () => {
   return (
-    <div className="flex flex-col w-full">
-      {/* Benefits Banner Section */}
-      <div className="w-full py-12 bg-indigo-50">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center text-indigo-900 mb-12">
-            Benefits of Digital Transformation Consulting
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="flex justify-center mb-4">
-                <PenTool size={40} className="text-indigo-500" />
+    <div className="w-full py-12 border-b border-gray-200 bg-indigo-50">
+      <div className="container mx-auto px-6">
+        <h2 className="text-3xl font-bold text-indigo-900 mb-8 text-center">Why Choose Nixsoft?</h2>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {whyChooseContent.map((item, index) => (
+            <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <div className="flex items-center mb-3">
+                <div className="bg-indigo-100 p-2 rounded-full">{item.icon}</div>
+                <h3 className="text-xl font-bold text-indigo-800 ml-2">{item.title}</h3>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Increased Efficiency</h3>
-              <p className="text-gray-600">Streamlined processes and automation reduce manual effort and errors</p>
+              <p className="text-gray-700">{item.description}</p>
             </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="flex justify-center mb-4">
-                <Rocket size={40} className="text-indigo-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Scalability</h3>
-              <p className="text-gray-600">Technology allows businesses to scale operations more easily</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="flex justify-center mb-4">
-                <ChevronRight size={40} className="text-indigo-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Improved Experience</h3>
-              <p className="text-gray-600">Personalized, real-time services that engage customers effectively</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="flex justify-center mb-4">
-                <TrendingUp size={40} className="text-indigo-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Data-Driven Decisions</h3>
-              <p className="text-gray-600">Enhanced decision-making with analytics and insights</p>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="flex justify-center mb-4">
-                <Search size={40} className="text-indigo-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Competitive Edge</h3>
-              <p className="text-gray-600">Staying ahead by leveraging the latest technologies</p>
-            </div>
-          </div>
+          ))}
+        </div>
+        
+        <div className="text-center mt-12">
+          <p className="text-lg text-gray-800 font-medium">
+            Choose Nixsoft to seamlessly modernize your infrastructure and confidently drive your digital transformation forward.
+          </p>
         </div>
       </div>
+    </div>
+  );
+};
 
-      {/* Service Sections */}
-      {servicesData.map((service, index) => (
+const ServicesPage: React.FC = () => {
+  return (
+    <div className="flex flex-col w-full">
+      {/* Service Sections - mapped from the content array */}
+      {servicesContent.map((service) => (
         <ServiceSection
-          key={index}
+          key={service.id}
           title={service.title}
           description={service.description}
-          services={service.services}
-          imagePosition={service.imagePosition}
+          icon={service.icon}
+          bulletPoints={service.bulletPoints}
+          imagePosition={service.imagePosition as "left" | "right"}
           imageSrc={service.imageSrc}
-          index={index}
         />
       ))}
+
+      {/* Why Choose Nixsoft Section */}
+      <WhyChooseSection />
 
       {/* Back to top button */}
       <div className="fixed bottom-8 right-8">
@@ -261,24 +229,11 @@ const DigitalTransformationPage: React.FC = () => {
           className="bg-gray-800 text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition-colors"
           aria-label="Back to top"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            />
-          </svg>
+          <ChevronUp className="h-6 w-6" />
         </button>
       </div>
     </div>
   );
 };
 
-export default DigitalTransformationPage;
+export default ServicesPage;

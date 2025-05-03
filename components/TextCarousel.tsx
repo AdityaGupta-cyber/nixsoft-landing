@@ -9,11 +9,11 @@ const Carousel = ({ interval = 3000 }) => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % items.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
     }, interval);
 
     return () => clearInterval(timer);
-  }, [items.length, interval]);
+  }, [interval]);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);

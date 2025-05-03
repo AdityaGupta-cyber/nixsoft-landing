@@ -9,7 +9,7 @@ const CTASection = () => {
         </h2>
 
         <a
-          href="#contact"
+          href="/contact-us"
           className="inline-block bg-white text-blue-600 font-medium px-8 py-4 rounded-md text-lg hover:bg-blue-50 transition-colors"
         >
           Let&apos;s Work Together

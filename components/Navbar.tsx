@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/navbar-menu";
 import { cn } from "@/lib/utils";
 import {
-  Search,
   Menu as MenuIcon,
   X,
   Cloud,
@@ -228,38 +227,10 @@ function NavbarUtil({ className }: { className?: string }) {
                   />
                 </div>
               </MenuItem>
-              <MenuItem setActive={setActive} active={active} item="Our Stack">
-                <div className="text-sm grid grid-cols-2 gap-10 p-6">
-                  <ProductItem
-                    title="Cloud Solutions"
-                    href="/tech/cloud"
-                    src="https://assets.aceternity.com/demos/algochurn.webp"
-                    description="AWS, Azure, & Google Cloud Solutions"
-                  />
-                  <ProductItem
-                    title="DevOps"
-                    href="/tech/devops"
-                    src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
-                    description="CI/CD Pipeline Implementation"
-                  />
-                </div>
-              </MenuItem>
               <MenuItem setActive={setActive} active={active} item="About Us">
                 <div className="flex flex-col space-y-4 text-sm p-6">
                   <HoveredLink href="/about-us">Our Company</HoveredLink>
                   <HoveredLink href="/careers">Careers</HoveredLink>
-                </div>
-              </MenuItem>
-              <MenuItem setActive={setActive} active={active} item="Insights">
-                <div className="flex flex-col space-y-4 text-sm p-6">
-                  <HoveredLink href="/insights/blog">Blog</HoveredLink>
-                  <HoveredLink href="/insights/case-studies">
-                    Case Studies
-                  </HoveredLink>
-                  <HoveredLink href="/insights/whitepapers">
-                    Whitepapers
-                  </HoveredLink>
-                  <HoveredLink href="/insights/webinars">Webinars</HoveredLink>
                 </div>
               </MenuItem>
             </Menu>
@@ -270,9 +241,6 @@ function NavbarUtil({ className }: { className?: string }) {
             >
               Get Pricing
             </Button>
-            <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-              <Search className="h-5 w-5 text-gray-600" />
-            </button>
           </div>
 
           <div className="md:hidden">
@@ -433,39 +401,6 @@ function NavbarUtil({ className }: { className?: string }) {
             )}
           </div>
 
-          {/* Our Stack dropdown */}
-          <div className="border-b border-gray-100">
-            <button
-              onClick={() => toggleMobileSubmenu("stack")}
-              className="flex justify-between items-center w-full px-4 py-3 text-left text-base font-medium text-gray-700"
-            >
-              <span>Our Stack</span>
-              {mobileSubmenu === "stack" ? (
-                <ChevronDown className="h-5 w-5 text-gray-500" />
-              ) : (
-                <ChevronRight className="h-5 w-5 text-gray-500" />
-              )}
-            </button>
-            {mobileSubmenu === "stack" && (
-              <div className="px-4 py-2 space-y-3 bg-gray-50">
-                <Link
-                  href="/tech/cloud"
-                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
-                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
-                >
-                  Cloud Solutions
-                </Link>
-                <Link
-                  href="/tech/devops"
-                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
-                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
-                >
-                  DevOps
-                </Link>
-              </div>
-            )}
-          </div>
-
           {/* About Us dropdown */}
           <div className="border-b border-gray-100">
             <button
@@ -499,52 +434,6 @@ function NavbarUtil({ className }: { className?: string }) {
             )}
           </div>
 
-          {/* Insights dropdown */}
-          <div className="border-b border-gray-100">
-            <button
-              onClick={() => toggleMobileSubmenu("insights")}
-              className="flex justify-between items-center w-full px-4 py-3 text-left text-base font-medium text-gray-700"
-            >
-              <span>Insights</span>
-              {mobileSubmenu === "insights" ? (
-                <ChevronDown className="h-5 w-5 text-gray-500" />
-              ) : (
-                <ChevronRight className="h-5 w-5 text-gray-500" />
-              )}
-            </button>
-            {mobileSubmenu === "insights" && (
-              <div className="px-4 py-2 space-y-3 bg-gray-50">
-                <Link
-                  href="/insights/blog"
-                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
-                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
-                >
-                  Blog
-                </Link>
-                <Link
-                  href="/insights/case-studies"
-                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
-                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
-                >
-                  Case Studies
-                </Link>
-                <Link
-                  href="/insights/whitepapers"
-                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
-                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
-                >
-                  Whitepapers
-                </Link>
-                <Link
-                  href="/insights/webinars"
-                  className="block pl-4 py-2 text-sm text-gray-700 hover:text-blue-600 border-l-2 border-gray-200 hover:border-blue-600"
-                  onClick={() => setMobileMenuOpen(false)} // Close menu on click
-                >
-                  Webinars
-                </Link>
-              </div>
-            )}
-          </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
             <div className="flex items-center px-5">
               <Button
