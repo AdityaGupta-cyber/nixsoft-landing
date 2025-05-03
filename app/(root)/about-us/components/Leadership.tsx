@@ -6,20 +6,20 @@ const LeadershipTeamSection = () => {
   const teamMembers = [
     {
       id: 1,
-      profilePicture: "/wajid.jpg", // Ensure image is in public folder
+      profilePicture: "/wajid.jpg", //add profile picture from public folder
       name: "Wajid Shaikh",
       position: "Director",
-      bio: "Shaikh Abdul Wajid has more than 20 years of experience in IT, Management and Consulting.",
+      bio: "Shaikh Abdul Wajid has More than 20 years of experience in IT, Management and Consulting.",
       linkedinUrl: "https://linkedin.com",
       twitterUrl: "https://twitter.com",
       githubUrl: "https://github.com",
     },
     {
       id: 2,
-      profilePicture: "/pravin.jpg", // Ensure image is in public folder
+      profilePicture: "/pravin.jpg", //add profile picture from public folder
       name: "Pravin Kore",
       position: "Director",
-      bio: "Pravin is a strategic and result-oriented professional offering 15+ years of experience with Open Source Technologies.",
+      bio: "Pravin is strategic and result oriented professional offering 15 plus years of experience with Open Source Technologies.",
       linkedinUrl: "https://linkedin.com",
       twitterUrl: "https://twitter.com",
       githubUrl: "https://github.com",

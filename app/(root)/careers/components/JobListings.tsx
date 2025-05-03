@@ -26,7 +26,7 @@ export const JobListings: React.FC = () => {
               </div>
               <p className="text-gray-600 mb-6">{job.description}</p>
               <button className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition-colors flex items-center justify-center">
-                Apply Now
+                <a href={job.applyLink} target="_blank" rel="noopener noreferrer">Apply Now</a>
               </button>
             </div>
           ))}
