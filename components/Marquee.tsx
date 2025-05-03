@@ -64,12 +64,12 @@ export default function Marquee() {
           </p>
         </div>
 
-        {/* marquee grid 3 - solutions */}
-        <div className="w-full h-full flex justify-center ">
-          <div className="w-full lg:max-w-[60vw] flex items-center justify-center mx-auto px-8">
-            <HoverEffect items={solutions} />
-          </div>
-        </div>
+       {/* marquee grid 3 - solutions */}
+<div className="w-full h-full flex justify-center">
+  <div className="container mx-auto px-8">
+    <HoverEffect items={solutions} />
+  </div>
+</div>
       </div>
     </div>
   );

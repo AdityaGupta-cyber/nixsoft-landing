@@ -5,20 +5,20 @@ const LeadershipTeamSection = () => {
   const teamMembers = [
     {
       id: 1,
-      profilePicture: "/api/placeholder/400/500",
-      name: "David Mitchell",
-      position: "CEO & Founder",
-      bio: "With 15+ years of technology leadership experience, David leads our vision and strategy.",
+      profilePicture: "/wajid.jpg", //add profile picture from public folder
+      name: "Wajid Shaikh",
+      position: "Director",
+      bio: "Shaikh Abdul Wajid has More than 20 years of experience in IT, Management and Consulting.",
       linkedinUrl: "https://linkedin.com",
       twitterUrl: "https://twitter.com",
       githubUrl: "https://github.com",
     },
     {
       id: 2,
-      profilePicture: "/api/placeholder/400/500",
-      name: "Sarah Johnson",
-      position: "CTO",
-      bio: "A technical innovator with expertise in emerging technologies and solution architecture.",
+      profilePicture: "/pravin.jpg", //add profile picture from public folder
+      name: "Pravin Kore",
+      position: "Director",
+      bio: "Pravin is strategic and result oriented professional offering 15 plus years of experience with Open Source Technologies.",
       linkedinUrl: "https://linkedin.com",
       twitterUrl: "https://twitter.com",
       githubUrl: "https://github.com",

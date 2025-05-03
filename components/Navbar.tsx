@@ -63,7 +63,9 @@ function NavbarUtil({ className }: { className?: string }) {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <h1 className="text-2xl font-bold">nixsoft</h1>
+            <h1 className="text-2xl font-bold">
+              <img src="/logo.png" alt="Logo" className="h-10" />
+            </h1>
           </Link>
 
           {/* Desktop menu */}
