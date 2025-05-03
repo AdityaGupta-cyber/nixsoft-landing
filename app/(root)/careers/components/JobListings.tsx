@@ -106,7 +106,7 @@ export const JobListings: React.FC = () => {
                 name="position"
                 required
                 value={formData.position}
-                onChange={(e) => setFormData({ ...formData, position: e.target.value })}
+                onChange={(e) => setSelectedJob(e.target.value)}
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="">Select a position</option>
