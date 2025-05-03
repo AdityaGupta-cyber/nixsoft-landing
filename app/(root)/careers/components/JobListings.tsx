@@ -1,6 +1,5 @@
 // src/components/JobListings.tsx
 import React, { useState } from "react";
-import { MapPin, Briefcase, Upload } from "lucide-react";
 import { jobListings } from "@/lib/data";
 
 export const JobListings: React.FC = () => {
