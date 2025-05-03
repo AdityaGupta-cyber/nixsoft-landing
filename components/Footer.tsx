@@ -3,13 +3,13 @@ import { Linkedin, Twitter, Facebook } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12">
+    <footer className="bg-gray-900 text-gray-300 py-12 overflow-clip">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <div className="mb-4">
               <img
-                src="/api/placeholder/120/40"
+                src="/logo.png"
                 alt="Coming Soon"
                 className="h-10"
               />
@@ -19,13 +19,13 @@ const Footer = () => {
               digital success.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fnixsoftech.in%2Fcontact-us%2F" className="hover:text-white transition-colors">
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="https://twitter.com/intent/tweet?text=About%20Us&url=https%3A%2F%2Fnixsoftech.in%2Fabout-us%2F" className="hover:text-white transition-colors">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnixsoftech.in%2Fabout-us%2F" className="hover:text-white transition-colors">
                 <Facebook size={20} />
               </a>
             </div>
