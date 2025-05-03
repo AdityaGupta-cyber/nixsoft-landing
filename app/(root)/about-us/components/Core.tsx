@@ -33,12 +33,16 @@ const CoreValuesSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {values.map((value, index) => (
-            <Card
-              key={index}
-              icon={value.icon}
-              heading={value.heading}
-              paragraphText={value.paragraphText}
-            />
+            <div 
+              key={index} 
+              className={`flex justify-center ${index === 2 ? 'md:col-span-2 lg:col-span-1' : ''}`}
+            >
+              <Card
+                icon={value.icon}
+                heading={value.heading}
+                paragraphText={value.paragraphText}
+              />
+            </div>
           ))}
         </div>
       </div>
