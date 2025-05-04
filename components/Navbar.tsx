@@ -64,7 +64,7 @@ function NavbarUtil({ className }: { className?: string }) {
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <h1 className="text-2xl font-bold">
-            <Image src="/logo.png" alt="NixSoft Logo" width={120} height={32} className="h-8" />
+            <Image src="/logo.png" alt="NixSoft Logo" width={100} height={100} className="h-8" />
             </h1>
           </Link>
 

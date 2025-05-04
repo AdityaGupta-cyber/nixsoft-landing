@@ -6,9 +6,10 @@ import LogoMarquee from "@/components/LogoMarquee";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import LatestResources from "@/components/LatestResources";
 import GetInTouch from "@/components/GetInTouch";
-
+// import NotFound from "./not-found";
 export default function Home() {
   return (
+
     <div className="min-h-screen bg-gradient-to-br from-navy-900 via-blue-900 to-blue-800">
       <Hero />
       <Marquee />
