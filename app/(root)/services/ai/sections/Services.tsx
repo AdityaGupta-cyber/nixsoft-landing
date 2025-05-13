@@ -69,7 +69,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 
             <button
               className="text-blue-500 font-medium flex items-center hover:text-blue-700 transition-colors"
-              onClick={() => (window.location.href = "/learn-more")}
+              onClick={() => (window.location.href = "/about-us")}
             >
               Learn More
               <ChevronRight className="h-5 w-5 ml-1" />
