@@ -8,14 +8,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <div className="mb-4">              <Image
-                src="/logo.png"
-                width={100}
-                height={100}
-                alt="Coming Soon"
-                width={120}
-                height={40}
-                className="h-10"
-              />
+              src="/logo.png"
+              width={100}
+              height={100}
+
+              className="h-10" alt={" logo"}              />
             </div>
             <p className="mb-4">
               Empowering businesses with innovative technology solutions for
