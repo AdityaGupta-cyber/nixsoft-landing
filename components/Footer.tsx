@@ -7,10 +7,11 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
-            <div className="mb-4">
-              <Image
+            <div className="mb-4">              <Image
                 src="/logo.png"
                 alt="Coming Soon"
+                width={120}
+                height={40}
                 className="h-10"
               />
             </div>
@@ -43,7 +44,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="/services" className="hover:text-white transition-colors">
                   Services
                 </a>
               </li>
@@ -56,7 +57,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="/solutions" className="hover:text-white transition-colors">
                   Solutions
                 </a>
               </li>
@@ -80,27 +81,27 @@ const Footer = () => {
             <h3 className="text-lg font-medium mb-4">Services</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="/services/cloud" className="hover:text-white transition-colors">
                   Cloud Solutions
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="/services/software" className="hover:text-white transition-colors">
                   App Development
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="/services/it-management" className="hover:text-white transition-colors">
                   Data Analytics
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="/services/security" className="hover:text-white transition-colors">
                   Cybersecurity
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition-colors">
+                <a href="/services/it-consulting" className="hover:text-white transition-colors">
                   IT Consulting
                 </a>
               </li>
