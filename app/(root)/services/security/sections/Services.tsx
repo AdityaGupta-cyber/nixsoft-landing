@@ -54,22 +54,21 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
                   </span>
                 </div>
               ))}
-            </div>
-
-            <button
+            </div>            <button
               className="text-blue-500 font-medium flex items-center hover:text-blue-700 transition-colors"
-              onClick={() => (window.location.href = "/learn-more")}
+              onClick={() => (window.location.href = "/about-us")}
             >
               Learn More
               <ChevronRight className="h-5 w-5 ml-1" />
             </button>
           </div>
 
-          {/* Image Section */}
-          <div className="w-full lg:w-1/2 p-6">
+          {/* Image Section */}          <div className="w-full lg:w-1/2 p-6">
             <Image
               src={imageSrc || "/api/placeholder/600/400"}
               alt="Service illustration"
+              width={2070}
+              height={1380}
               className="rounded-lg shadow-md w-full object-cover h-64"
             />
           </div>

@@ -69,7 +69,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 
             <button
               className="text-blue-500 font-medium flex items-center hover:text-blue-700 transition-colors"
-              onClick={() => (window.location.href = "/learn-more")}
+              onClick={() => (window.location.href = "/about-us")}
             >
               Learn More
               <ChevronRight className="h-5 w-5 ml-1" />
@@ -77,10 +77,11 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
           </div>
 
           {/* Image Section */}
-          <div className="w-full lg:w-1/2 p-6">
-            <Image
+          <div className="w-full lg:w-1/2 p-6">            <Image
               src={imageSrc || "/api/placeholder/600/400"}
               alt="Service illustration"
+              width={2070}
+              height={1380}
               className="rounded-lg shadow-md w-full object-cover h-64"
             />
           </div>
@@ -223,10 +224,11 @@ const ServicesPage: React.FC = () => {
 
       {/* Hero image section */}
       <div className="w-full py-8">
-        <div className="container mx-auto px-6">
-          <Image 
+        <div className="container mx-auto px-6">          <Image 
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
-            alt="Custom Application Development Team" 
+            alt="Custom Application Development Team"
+            width={2070}
+            height={1380} 
             className="w-full h-96 object-cover rounded-xl shadow-lg"
           />
         </div>
@@ -250,8 +252,10 @@ const ServicesPage: React.FC = () => {
       <div className="w-full py-16 bg-indigo-600">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to transform your business with custom software?</h2>
-          <p className="text-indigo-100 mb-8 max-w-2xl mx-auto">Lets discuss how Nixsoft Technologies can help you build a custom application that meets your unique business needs.</p>
-          <button className="bg-white text-indigo-600 px-8 py-3 rounded-md font-medium hover:bg-indigo-50 transition-colors">
+          <p className="text-indigo-100 mb-8 max-w-2xl mx-auto">Lets discuss how Nixsoft Technologies can help you build a custom application that meets your unique business needs.</p>          <button 
+            onClick={() => window.location.href = "/contact-us"}
+            className="bg-white text-indigo-600 px-8 py-3 rounded-md font-medium hover:bg-indigo-50 transition-colors"
+          >
             Contact Us Today
           </button>
         </div>
