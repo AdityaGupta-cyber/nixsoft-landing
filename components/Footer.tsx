@@ -1,6 +1,6 @@
 import React from "react";
 import { Linkedin, Twitter, Facebook } from "lucide-react";
-
+import Image from "next/image";
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 py-12 overflow-clip">
@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <div className="mb-4">
-              <img
+              <Image
                 src="/logo.png"
                 alt="Coming Soon"
                 className="h-10"

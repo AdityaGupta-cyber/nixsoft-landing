@@ -13,6 +13,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const ServiceCard = ({ 
   title, 
@@ -35,7 +36,7 @@ const ServiceCard = ({
       onClick={() => router.push(link)}
     >
       <div className="relative h-48 overflow-hidden">
-        <img 
+        <Image
           src={imageUrl} 
           alt={title} 
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"

@@ -3,6 +3,7 @@ export interface JobListing {
   location: string;
   title: string;
   description: string;
+  applyLink: string;  
 }
 
 export const aboutContent = `Nixsoft Technologies: Pioneering Digital Transformation through Open Source Innovation. At the heart of our mission lies a commitment to empowering organizations with cutting-edge technological solutions that transcend traditional boundaries. Our expertise spans a comprehensive ecosystem of technologies, strategically positioned to deliver transformative outcomes through innovation, collaborative problem-solving, and deep technical mastery.
@@ -17,36 +18,42 @@ export const jobListings: JobListing[] = [
   {
     location: "Mumbai, India",
     title: "Manager Finance and Accounts",
+    applyLink: "#",
     description:
       "We are seeking an experienced and detail-oriented Accounts Manager to lead our financial operations, ensuring robust financial planning, reporting, and strategic financial management.",
   },
   {
     location: "Mumbai, India",
     title: "L1 Kafka Administrator",
+    applyLink: "#",
     description:
       "We are seeking a dedicated L1 Kafka Administrator to join our 24×7 managed services team. The ideal candidate will have strong expertise in Kafka cluster management and monitoring.",
   },
   {
     location: "Mumbai, India",
     title: "L2 Kafka Administrator",
+    applyLink: "#",
     description:
       "We are looking for an experienced L2 Kafka Administrator to join our 24×7 managed services team, focusing on advanced Kafka cluster optimization and troubleshooting.",
   },
   {
     location: "Mumbai, India",
     title: "Senior Java Developer – Kafka Project",
+    applyLink: "#",
     description:
       "We are seeking an experienced Senior Java Developer to join our team and lead the development of custom Kafka-based distributed streaming applications and microservices.",
   },
   {
     location: "Mumbai, India",
     title: "Elastic Solution Consultant",
+    applyLink: "#",
     description:
       "Nixsoft is looking for talented and passionate professionals to be part of our Presales team, specializing in Elastic stack solutions and enterprise search technologies.",
   },
   {
     location: "Mumbai, India",
     title: "Enterprise Accounts Manager",
+    applyLink: "#",
     description:
       "Inviting dynamic, smart, experienced software sales professionals to sell open-source software and services to large enterprise accounts with complex technological needs.",
   },

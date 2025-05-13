@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Shield, Database, Lock, Globe, Clock, AlertCircle } from "lucide-react";
+import Image from "next/image";
 
 // Define interfaces for your props
 interface ServiceItem {
@@ -72,7 +73,7 @@ const ServiceSection: React.FC<ServiceSectionProps> = ({
 
           {/* Image Section */}
           <div className="w-full lg:w-1/2 p-6">
-            <img
+            <Image
               src={imageSrc || "/api/placeholder/600/400"}
               alt="Service illustration"
               className="rounded-lg shadow-md w-full"
