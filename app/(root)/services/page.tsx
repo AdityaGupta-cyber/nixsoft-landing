@@ -10,59 +10,82 @@ import {
   Brain, 
   Code, 
   Briefcase,
-  ChevronRight
+  
+  ArrowRight
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const ServiceCard = ({ 
   title, 
   description, 
   icon, 
   imageUrl, 
-  link 
+  link,
+  index 
 }: {
   title: string;
   description: string;
   icon: React.ReactNode;
   imageUrl: string;
   link: string;
+  index: number;
 }) => {
   const router = useRouter();
   
   return (
-    <div 
-      className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group relative bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full transform hover:-translate-y-1"
       onClick={() => router.push(link)}
     >
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-52 overflow-hidden">
         <Image
           src={imageUrl} 
-          alt={title} 
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          alt={title}
+          width={1050}
+          height={600}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          priority={index < 4}
         />
-        <div className="absolute inset-0 bg-navy-900 bg-opacity-30"></div>
-      </div>
-      <div className="p-6 flex flex-col flex-grow">
-        <div className="flex items-center mb-3">
-          <div className="p-2 rounded-full bg-navy-100 mr-3">
-            {icon}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 p-4">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
+              {icon}
+            </div>
           </div>
-          <h3 className="text-xl font-bold text-navy-900">{title}</h3>
         </div>
-        <p className="text-gray-600 mb-4 flex-grow">{description}</p>
+      </div>
+      <div className="p-6 flex flex-col flex-grow z-10">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{title}</h3>
+        <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow line-clamp-3">{description}</p>
         <button 
-          className="flex items-center text-blue-600 font-medium mt-2 hover:text-blue-800 transition-colors"
+          className="flex items-center space-x-2 text-blue-600 dark:text-blue-400 font-medium mt-2 group/btn"
           onClick={(e) => {
             e.stopPropagation();
             router.push(link);
           }}
         >
-          Explore More <ChevronRight className="h-4 w-4 ml-1" />
+          <span>Explore More</span>
+          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
         </button>
       </div>
-    </div>
+    </motion.div>
   );
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
 };
 
 const ServicesPage = () => {
@@ -124,24 +147,47 @@ const ServicesPage = () => {
       link: "/services/it-consulting"
     }
   ];
-
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
       {/* Hero Section */}
-      <div className="bg-navy-900 py-16 md:py-24">
-        <div className="container mx-auto px-4">
+      <div className="relative bg-gradient-to-br from-navy-900 via-navy-800 to-blue-900 py-20 md:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-grid-white/[0.2] bg-[size:16px_16px] opacity-20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-900/50 to-transparent" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="container relative mx-auto px-4"
+        >
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">Our Services</h1>
-            <p className="text-lg md:text-xl text-gray-300">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
+            >
+              Our Services
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl md:text-2xl text-gray-200 max-w-3xl mx-auto"
+            >
               Comprehensive IT solutions designed to transform and optimize your business operations
-            </p>
+            </motion.p>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Services Grid */}
-      <div className="container mx-auto px-4 py-12 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+      <div className="container mx-auto px-4 -mt-16 relative z-10">
+        <motion.div 
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
+        >
           {services.map((service, index) => (
             <ServiceCard
               key={index}
@@ -150,28 +196,48 @@ const ServicesPage = () => {
               icon={service.icon}
               imageUrl={service.imageUrl}
               link={service.link}
+              index={index}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Call to Action */}
-      <div className="bg-navy-800 py-12">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Ready to transform your IT infrastructure?</h2>
-            <p className="text-gray-300 mb-8">
-              Contact our team of experts to discuss your specific requirements and how NixSoft can help.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md transition-colors">
-                Get Pricing
-              </button>
-              <button className="bg-transparent border border-white text-white hover:bg-white hover:text-navy-900 font-semibold px-6 py-3 rounded-md transition-colors">
-                Contact Us
-              </button>
+      <div className="relative mt-24 mb-12">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 blur-3xl" />
+        <div className="relative container mx-auto px-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-2xl p-8 md:p-12 shadow-xl"
+          >
+            <div className="text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                Ready to transform your IT infrastructure?
+              </h2>
+              <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8">
+                Contact our team of experts to discuss your specific requirements and how NixSoft can help.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  Get Pricing
+                </motion.button>
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="bg-white dark:bg-transparent border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-semibold px-8 py-4 rounded-xl transition-all duration-300"
+                >
+                  Contact Us
+                </motion.button>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
